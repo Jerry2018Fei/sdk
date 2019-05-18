@@ -1,6 +1,7 @@
 package com.dragon.sdk.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.*;
@@ -28,20 +29,38 @@ public class GamePlayerMsg extends Model<Admin> {
     /**
      * imei
      */
+    @TableField("imei")
     private String imei;
     /**
      * ip
      */
+    @TableField("ip")
+
     private String ip;
+    /**
+     * 设备码
+     */
+    @TableField("device_id")
+
+    private String deviceId;
     /**
      * 入库时间
      */
+    @TableField("create_time")
+
     private Date createTime;
     /**
-     * 是否已经失效
+     * 是否已经匹配过
      */
-    private Integer deleteFlag;
+    @TableField("status")
 
+    private Integer status;
+    /**
+     * 是否已经删除
+     */
+    @TableField("delete_flag")
+
+    private Integer deleteFlag;
     @Override
     protected Serializable pkVal() {
         return this.id;

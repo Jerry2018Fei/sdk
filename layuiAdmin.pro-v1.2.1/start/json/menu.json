@@ -47,19 +47,16 @@
       "title": "游戏推广数据",
       "icon": "layui-icon-tree",
       "list": [
+
         {
-          "title": "控制台",
-          "jump": "/"
-        },
-        {
-          "name": "game—-player--data",
+          "name": "game-player-data",
           "title": "第三方游戏玩家数据",
-          "jump": "ad/game_player_data_list"
+          "jump": "ad/game_data"
         },
         {
           "name": "toutiao-ad-data",
           "title": "头条游戏数据",
-          "jump": "ad/list"
+          "jump": "ad/toutiao_data"
         }
       ]
     },
