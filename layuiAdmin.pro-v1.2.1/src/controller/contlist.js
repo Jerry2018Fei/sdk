@@ -18,7 +18,7 @@ layui.define(['table', 'form'], function(exports){
   //文章管理
   table.render({
     elem: '#LAY-app-content-list'
-    ,url: './json/content/list.js' //模拟接口
+    ,url: './json/content/list.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: '文章ID', sort: true}
@@ -70,7 +70,7 @@ layui.define(['table', 'form'], function(exports){
   //分类管理
   table.render({
     elem: '#LAY-app-content-tags'
-    ,url: './json/content/tags.js' //模拟接口
+    ,url: './json/content/tags.json' //模拟接口
     ,cols: [[
       {type: 'numbers', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}
@@ -115,7 +115,7 @@ layui.define(['table', 'form'], function(exports){
   //评论管理
   table.render({
     elem: '#LAY-app-content-comm'
-    ,url: './json/content/comment.js' //模拟接口
+    ,url: './json/content/comment.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}

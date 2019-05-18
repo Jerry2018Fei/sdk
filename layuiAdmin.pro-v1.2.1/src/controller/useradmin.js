@@ -4,7 +4,7 @@
  @Author：star1029
  @Site：http://www.layui.com/admin/
  @License：LPPL
-    
+
  */
 
 
@@ -18,7 +18,7 @@ layui.define(['table', 'form'], function(exports){
   //用户管理
   table.render({
     elem: '#LAY-user-manage'
-    ,url: './json/useradmin/webuser.js' //模拟接口
+    ,url: './json/useradmin/webuser.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}
@@ -36,7 +36,7 @@ layui.define(['table', 'form'], function(exports){
     ,height: 'full-320'
     ,text: '对不起，加载出现异常！'
   });
-  
+
   //监听工具条
   table.on('tool(LAY-user-manage)', function(obj){
     var data = obj.data;
@@ -46,7 +46,7 @@ layui.define(['table', 'form'], function(exports){
         ,title: '敏感操作，请验证口令'
       }, function(value, index){
         layer.close(index);
-        
+
         layer.confirm('真的删除行么', function(index){
           obj.del();
           layer.close(index);
@@ -60,7 +60,7 @@ layui.define(['table', 'form'], function(exports){
         ,success: function(layero, index){
           view(this.id).render('user/user/userform', data).done(function(){
             form.render(null, 'layuiadmin-form-useradmin');
-            
+
             //监听提交
             form.on('submit(LAY-user-front-submit)', function(data){
               var field = data.field; //获取提交的字段
@@ -68,7 +68,7 @@ layui.define(['table', 'form'], function(exports){
               //提交 Ajax 成功后，关闭当前弹层并重载表格
               //$.ajax({});
               layui.table.reload('LAY-user-manage'); //重载表格
-              layer.close(index); //执行关闭 
+              layer.close(index); //执行关闭
             });
           });
         }
@@ -79,7 +79,7 @@ layui.define(['table', 'form'], function(exports){
   //管理员管理
   table.render({
     elem: '#LAY-user-back-manage'
-    ,url: './json/useradmin/mangadmin.js' //模拟接口
+    ,url: './json/useradmin/mangadmin.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 80, title: 'ID', sort: true}
@@ -93,7 +93,7 @@ layui.define(['table', 'form'], function(exports){
     ]]
     ,text: '对不起，加载出现异常！'
   });
-  
+
   //监听工具条
   table.on('tool(LAY-user-back-manage)', function(obj){
     var data = obj.data;
@@ -117,7 +117,7 @@ layui.define(['table', 'form'], function(exports){
         ,success: function(layero, index){
           view(this.id).render('user/administrators/adminform', data).done(function(){
             form.render(null, 'layuiadmin-form-admin');
-            
+
             //监听提交
             form.on('submit(LAY-user-back-submit)', function(data){
               var field = data.field; //获取提交的字段
@@ -125,7 +125,7 @@ layui.define(['table', 'form'], function(exports){
               //提交 Ajax 成功后，关闭当前弹层并重载表格
               //$.ajax({});
               layui.table.reload('LAY-user-back-manage'); //重载表格
-              layer.close(index); //执行关闭 
+              layer.close(index); //执行关闭
             });
           });
         }
@@ -136,7 +136,7 @@ layui.define(['table', 'form'], function(exports){
   //角色管理
   table.render({
     elem: '#LAY-user-back-role'
-    ,url: './json/useradmin/role.js' //模拟接口
+    ,url: './json/useradmin/role.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 80, title: 'ID', sort: true}
@@ -147,7 +147,7 @@ layui.define(['table', 'form'], function(exports){
     ]]
     ,text: '对不起，加载出现异常！'
   });
-  
+
   //监听工具条
   table.on('tool(LAY-user-back-role)', function(obj){
     var data = obj.data;
@@ -164,7 +164,7 @@ layui.define(['table', 'form'], function(exports){
         ,success: function(layero, index){
           view(this.id).render('user/administrators/roleform', data).done(function(){
             form.render(null, 'layuiadmin-form-role');
-            
+
             //监听提交
             form.on('submit(LAY-user-role-submit)', function(data){
               var field = data.field; //获取提交的字段
@@ -172,7 +172,7 @@ layui.define(['table', 'form'], function(exports){
               //提交 Ajax 成功后，关闭当前弹层并重载表格
               //$.ajax({});
               layui.table.reload('LAY-user-back-role'); //重载表格
-              layer.close(index); //执行关闭 
+              layer.close(index); //执行关闭
             });
           });
         }

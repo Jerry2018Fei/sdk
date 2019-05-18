@@ -18,7 +18,7 @@ layui.define(['table', 'form'], function(exports){
   //帖子管理
   table.render({
     elem: '#LAY-app-forum-list'
-    ,url: './json/forum/list.js' //模拟接口
+    ,url: './json/forum/list.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}
@@ -71,7 +71,7 @@ layui.define(['table', 'form'], function(exports){
   //回帖管理
   table.render({
     elem: '#LAY-app-forumreply-list'
-    ,url: './json/forum/replys.js' //模拟接口
+    ,url: './json/forum/replys.json' //模拟接口
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}

@@ -11,7 +11,7 @@
 
 <div class="layui-fluid" id="LAY-app-message-detail">
   <div class="layui-card layuiAdmin-msg-detail">
-    <div template lay-url="./json/message/detail.js?id={{ layui.router().search.id }}">
+    <div template lay-url="./json/message/detail.json?id={{ layui.router().search.id }}">
       <div class="layui-card-header">
         <h1>{{ d.data.title }}</h1>
         <p>
@@ -22,7 +22,7 @@
         <div class="layadmin-text">
           {{ d.data.content }}
         </div>
-        
+
         <div style="padding-top: 30px;">
           <a lay-href="app/message/" class="layui-btn layui-btn-primary layui-btn-sm">返回上级</a>
         </div>
@@ -37,7 +37,7 @@ layui.use(['admin'], function(){
   ,admin = layui.admin
   ,table = layui.table
   ,element = layui.element;
-  
-  
+
+
 });
 </script>
