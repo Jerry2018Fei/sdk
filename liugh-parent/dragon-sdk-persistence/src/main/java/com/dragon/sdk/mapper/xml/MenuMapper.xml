@@ -22,7 +22,7 @@
 
     <!-- 根据角色查询菜单 -->
     <select id="findMenuByRoleCode" resultMap="BaseResultMap">
-        select m.* from tb_menu m LEFT JOIN tb_role_to_menu r on r.menu_code= m.menu_code
+        select m.* from sdk_back_menu m LEFT JOIN sdk_back_role_to_menu r on r.menu_code= m.menu_code
         WHERE
         1 = 1
         <if test=" roleCode !=null and roleCode !=''">

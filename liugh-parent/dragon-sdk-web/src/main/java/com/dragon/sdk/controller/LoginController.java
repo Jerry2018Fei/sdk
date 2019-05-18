@@ -36,7 +36,7 @@ public class LoginController {
             @ApiImplicitParam(name = "requestJson", value = "{\"mobile\":\"13888888888\",\"password\":\"123456\"}"
                     , required = true, dataType = "String",paramType="body")
     })
-    @PostMapping("/login")
+    @PostMapping(value = "/login")
     @Log(action="SignIn",modelName= "Login",description="前台密码登录接口")
     @Pass
     public ResponseModel<Map<String, Object>> login(
