@@ -1,0 +1,105 @@
+{
+  "msg": "",
+  "data": [
+    {
+      "title": "主页",
+      "icon": "layui-icon-home",
+      "list": [
+        {
+          "title": "控制台",
+          "jump": "/"
+        },
+        {
+          "name": "homepage1",
+          "title": "主页一",
+          "jump": "home/homepage1"
+        },
+        {
+          "name": "homepage2",
+          "title": "主页二",
+          "jump": "home/homepage2"
+        }
+      ]
+    },
+    {
+      "title": "用户",
+      "icon": "layui-icon-user",
+      "name": "user",
+      "list": [
+        {
+          "name": "user",
+          "title": "网站用户",
+          "jump": "user/user/list"
+        },
+        {
+          "name": "administrators-list",
+          "title": "后台管理员",
+          "jump": "user/administrators/list"
+        },
+        {
+          "name": "administrators-rule",
+          "title": "角色管理",
+          "jump": "user/administrators/role"
+        }
+      ]
+    },
+    {
+      "title": "游戏推广数据",
+      "icon": "layui-icon-tree",
+      "list": [
+        {
+          "title": "控制台",
+          "jump": "/"
+        },
+        {
+          "name": "game—-player--data",
+          "title": "第三方游戏玩家数据",
+          "jump": "ad/game_player_data_list"
+        },
+        {
+          "name": "toutiao-ad-data",
+          "title": "头条游戏数据",
+          "jump": "ad/list"
+        }
+      ]
+    },
+    {
+      "title": "设置",
+      "icon": "layui-icon-set",
+      "name": "set",
+      "list": [
+        {
+          "title": "系统设置",
+          "list": [
+            {
+              "name": "website",
+              "title": "网站设置"
+            },
+            {
+              "name": "email",
+              "title": "邮件服务"
+            }
+          ],
+          "name": "system",
+          "spread": true
+        },
+        {
+          "title": "我的设置",
+          "list": [
+            {
+              "name": "info",
+              "title": "基本资料"
+            },
+            {
+              "name": "password",
+              "title": "修改密码"
+            }
+          ],
+          "name": "user",
+          "spread": true
+        }
+      ]
+    }
+  ],
+  "code": 200
+}
