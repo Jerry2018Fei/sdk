@@ -17,6 +17,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ResponseModel<T> implements Serializable {
   private static final long serialVersionUID = -1241360949457314497L;
+  public static final ResponseModel FAIL = new ResponseModel("失败", 500);
+  public static final ResponseModel SUCCESS = new ResponseModel("成功", 200);
   private T data;
   private String msg;
   private Integer code;
@@ -25,5 +27,10 @@ public class ResponseModel<T> implements Serializable {
     HttpServletResponse response =
         ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
     response.setCharacterEncoding("UTF-8");
+  }
+
+  public ResponseModel(String msg, Integer code) {
+    this.msg = msg;
+    this.code = code;
   }
 }

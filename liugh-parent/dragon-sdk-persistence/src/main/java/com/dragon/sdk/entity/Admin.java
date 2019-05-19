@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.*;
+import org.bouncycastle.crypto.digests.MD5Digest;
+import org.bouncycastle.crypto.macs.HMac;
+import org.bouncycastle.jcajce.provider.digest.MD5;
 
 /**
  * <p>
@@ -80,4 +83,9 @@ public class Admin extends Model<Admin> {
         return this.userNo;
     }
 
+  public static void main(String[] args) {
+//    HMac md5Digest=new HMac();
+//    md5Digest.update(Byte.parseByte(("hello"+"123")));
+//    System.out.println(md5Digest.);
+  }
 }

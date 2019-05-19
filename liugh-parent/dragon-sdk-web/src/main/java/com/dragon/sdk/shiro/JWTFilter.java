@@ -126,6 +126,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             if(split[0].equals(httpServletRequest.getRequestURI())
                     && (split[1].equals(httpServletRequest.getMethod()) ||  "RequestMapping".equals(split[1]))){
                 Constant.isPass=true;
+
                 if(ComUtil.isEmpty(authorization)){
                     //如果当前url不需要认证，则注入当前登录用户时，给一个空的
                     httpServletRequest.setAttribute("currentUser",new Admin());
