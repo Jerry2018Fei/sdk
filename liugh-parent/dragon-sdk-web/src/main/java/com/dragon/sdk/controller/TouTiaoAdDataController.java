@@ -14,15 +14,13 @@ import com.dragon.sdk.service.ITouTiaoAdDataService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 前端控制器
@@ -32,7 +30,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/touTiaoAdData")
-public class TouTiaoAdDataController {
+public class TouTiaoAdDataController extends BaseController {
   private static final Logger logger = LoggerFactory.getLogger(TouTiaoAdDataController.class);
   @Resource ITouTiaoAdDataService touTiaoAdDataService;
 
@@ -42,11 +40,12 @@ public class TouTiaoAdDataController {
       @RequestParam(name = "pageIndex", defaultValue = "1", required = false) Integer pageIndex,
       @RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
       @RequestParam(value = "imei", defaultValue = "", required = false) String imei,
+      @RequestParam(value = "idfa", defaultValue = "", required = false) String idfa,
       @RequestParam(value = "ip", defaultValue = "", required = false) String ip,
       @RequestParam(value = "createTime", defaultValue = "", required = false)
           String createTimeRange) {
     Wrapper<TouTiaoAdData> wrapper;
-    wrapper = new EntityWrapper<TouTiaoAdData>();
+    wrapper = new EntityWrapper<>();
     if (StringUtils.isNoneBlank(imei)) {
       wrapper = wrapper.like("imei", imei);
     }
@@ -54,17 +53,7 @@ public class TouTiaoAdDataController {
       wrapper = wrapper.like("ip", ip);
     }
 
-    if (StringUtils.isNoneBlank(createTimeRange)) {
-      String[] arr = createTimeRange.split("-");
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-      try {
-        Date start = sdf.parse(arr[0]);
-        Date end = sdf.parse(arr[1]);
-        wrapper = wrapper.between("create_time", start, end);
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
-    }
+    wrapper=createTimeRange((EntityWrapper) wrapper,createTimeRange);
     return ResponsePageHelper.buildResponseModel(
         touTiaoAdDataService.selectPage(new Page<>(pageIndex, pageSize), wrapper));
   }
@@ -72,19 +61,50 @@ public class TouTiaoAdDataController {
   @GetMapping(value = "/addData")
   @Pass
   public ResponseModel<String> addData(
-      String ua,
-      String mac,
-      String uuid,
-      String androidid,
-      String openudid,
-      Integer os,
-      String imei,
-      String ip,
+      @RequestParam(name = "ua", required = false, defaultValue = "") String ua,
+      @RequestParam(name = "mac", required = false, defaultValue = "") String mac,
+      @RequestParam(name = "uuid", required = false, defaultValue = "") String uuid,
+      @RequestParam(name = "androidid", required = false, defaultValue = "") String androidid,
+      @RequestParam(name = "openudid", required = false, defaultValue = "") String openudid,
+      @RequestParam(name = "os", required = false, defaultValue = "") String os,
+      @RequestParam(name = "imei", required = false, defaultValue = "") String imei,
+      @RequestParam(name = "idfa", required = false, defaultValue = "") String idfa,
+      @RequestParam(name = "ip", required = false, defaultValue = "") String ip,
       @RequestParam(name = "callback_url", required = false, defaultValue = "")
           String callbackUrl) {
 
-    logger.info(ua, mac, uuid, androidid, openudid, os, imei, ip, callbackUrl);
-    Integer count =
+    logger.info(
+        "ua:{}, mac:{}, uuid:{}, androidid:{}, openudid:{}, "
+            + "os:{}, imei:{},idfa:{}, ip:{}, callbackUrl:{}",
+        ua,
+        mac,
+        uuid,
+        androidid,
+        openudid,
+        os,
+        imei,
+        idfa,
+        ip,
+        callbackUrl);
+    boolean bool =
+        checkParam(ua)
+            && checkParam(mac)
+            && checkParam(uuid)
+            && checkParam(androidid)
+            && checkParam(openudid)
+            && checkParam(os)
+            && checkParam(imei)
+            && checkParam(idfa)
+            && checkParam(ip)
+            && checkParam(callbackUrl);
+    if (!bool) {
+      return new ResponseModel<>("接收到无效信息", ResponseModel.FAIL.getCode());
+    }
+    if (!StringUtils.isNumeric(os)) {
+      os = "";
+    }
+
+    int count =
         touTiaoAdDataService.selectCount(
             new EntityWrapper<TouTiaoAdData>()
                 .eq("ua", ua)
@@ -92,16 +112,44 @@ public class TouTiaoAdDataController {
                 .eq("uuid", uuid)
                 .eq("androidid", androidid)
                 .eq("openudid", openudid)
-                .eq("os", os)
+                .eq("os", Integer.getInteger(os))
                 .eq("imei", imei)
+                .eq("idfa", idfa)
                 .eq("ip", ip));
-    if (count > 0) {
+    if (count == 0) {
       TouTiaoAdData data =
-          new TouTiaoAdData(mac, ua, uuid, androidid, openudid, os, callbackUrl, imei, ip);
+          new TouTiaoAdData(
+              mac, ua, uuid, androidid, openudid, Integer.getInteger(os), callbackUrl, imei, ip,idfa);
       touTiaoAdDataService.insert(data);
       return ResponseHelper.buildResponseModel("操作成功");
     } else {
-      return new ResponseModel<>("接收数据异常", ResponseModel.FAIL.getCode());
+      return new ResponseModel<>("接收数据异常,重复数据", ResponseModel.FAIL.getCode());
     }
+  }
+
+  private boolean checkParam(String msg) {
+    boolean bool = true;
+    String emptyFlag = "__";
+    if (StringUtils.isNoneBlank(msg)
+        && msg.trim().startsWith(emptyFlag)
+        && msg.trim().endsWith(emptyFlag)) {
+      bool = false;
+    }
+    if(StringUtils.isBlank(msg)){
+      return true;
+    }
+    return bool;
+  }
+
+  @DeleteMapping(value = "/remove")
+  public ResponseModel<String> remove(@RequestBody List<Long> ids) {
+    try {
+      touTiaoAdDataService.deleteBatchIds(ids);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseModel<>(e.getLocalizedMessage(), ResponseModel.FAIL.getCode());
+    }
+
+    return ResponseHelper.buildResponseModel("删除数据成功");
   }
 }

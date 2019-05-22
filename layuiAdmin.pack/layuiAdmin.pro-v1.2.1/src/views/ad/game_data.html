@@ -1,0 +1,196 @@
+<title>第三方游戏玩家数据</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>游戏推广数据</cite></a>
+        <a><cite>第三方游戏玩家数据</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto " lay-filter="game_data_form">
+            <form>
+                <div class="layui-form-item">
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">IMEI</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="imei" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">设备码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="deviceId" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">IP</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="ip" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">注册时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="createTime" class="layui-input" id="createTimeRange"
+                                   placeholder="yyyy-MM-dd" lay-key="7"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="text-align: right">
+
+                    <div class="layui-inline">
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                        <button type="button" class="layui-btn layuiadmin-btn-list" lay-submit
+                                lay-filter="LAY-form-search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
+                <button type="button" class="layui-btn" id="test1">
+                    <i class="layui-icon">&#xe67c;</i>上传Excel
+                </button>
+            </div>
+            <table id="LAY-game-data-table" lay-filter="LAY-game-data-table"></table>
+            <script type="text/html" id="buttonTpl">
+                {{#  if(d.status){ }}
+                <button class="layui-btn layui-btn-xs">已匹配</button>
+                {{#  } else { }}
+                <button class="layui-btn layui-btn-primary layui-btn-xs">未匹配</button>
+                {{#  } }}
+            </script>
+            <script type="text/html" id="table-row-tpl">
+
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                        class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+
+<script>
+    var id = "hello";
+    layui.use('ad_data', layui.factory('contlist')).use(['admin', 'contlist', 'table', 'laydate', 'setter', 'upload'], function () {
+        var $ = layui.$
+            , admin = layui.admin
+            , view = layui.view
+            , table = layui.table
+            , setter = layui.setter
+            , form = layui.form;
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#createTimeRange'
+            , format: 'yyyyMMdd'
+            , range: true
+        });
+        form.render(null, 'game_data_form');
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/import' //上传接口
+            , exts: "xls|xlsx"
+            , done: function (res) {
+                //上传完毕回调
+                console.log(res);
+                table.reload('LAY-game-data-table');
+            }
+            , error: function (e) {
+                //请求异常回调
+                console.log(e);
+            }
+        });
+        //监听搜索
+        form.on('submit(LAY-form-search)', function (data) {
+            var field = data.field;
+
+            //执行重载
+            table.reload('LAY-game-data-table', {
+                where: field
+            });
+        });
+        var local = layui.data(setter.tableName);
+        table.render({
+            elem: '#LAY-game-data-table'
+            , url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/pageList' //模拟接口
+            , headers: {
+                "Authorization": local[setter.request.tokenName]
+            }
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', width: 100, title: 'ID', sort: true}
+                , {field: 'imei', title: 'IMEI', minWidth: 100}
+                , {field: 'ip', title: 'IP'}
+                , {field: 'deviceId', title: '设备码'}
+                , {field: 'createTime', title: '注册时间', sort: true}
+                , {field: 'status', title: '匹配状态', templet: '#buttonTpl', minWidth: 80, align: 'center'}
+                // , {title: '操作', minWidth: 150, align: 'center', fixed: 'right', toolbar: '#table-row-tpl'}
+            ]]
+            , page: true
+            , limit: 10
+            , limits: [10, 15, 20, 25, 30]
+            , text: '对不起，加载出现异常！'
+            , done: function (d) {
+                $(".layui-table-box .layui-none").text("无数据");
+            }
+        });
+
+
+        var active = {
+            batchdel: function () {
+                var checkStatus = table.checkStatus('LAY-game-data-table')
+                    , checkData = checkStatus.data; //得到选中的数据
+
+                if (checkData.length === 0) {
+                    return layer.msg('请选择数据');
+                }
+                var arr = [];
+                for (var i = 0; i < checkData.length; i++) {
+                    arr.push(checkData[i].id);
+                }
+                layer.confirm('确定删除吗？', function (index) {
+                    console.log(checkData);
+                    console.log(arr);
+                    //执行 Ajax 后重载
+
+                    admin.req({
+                        url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/remove' //实际使用请改成服务端真实接口
+                        , headers: {
+                            "Authorization": local[setter.request.tokenName]
+                        }
+                        , data: JSON.stringify(arr)
+                        , contentType: 'application/json'
+                        , dataType: 'json'
+                        , type: "delete"
+
+                        , done: function (res) {
+
+                            table.reload('LAY-game-data-table');
+                            layer.msg('已删除');
+                        }
+                    });
+
+                });
+            }
+
+
+        };
+
+        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    });
+</script>

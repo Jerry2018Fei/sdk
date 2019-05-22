@@ -29,4 +29,16 @@ public class MD5Utils {
             throw new Exception(e.getMessage());
         }
     }
+
+    public static String getSign(String url) throws NoSuchAlgorithmException {
+        String key="WrKroAb-giSNw-vyH-PIvFnfXpKbjTqSa";
+        MessageDigest md5Digest=MessageDigest.getInstance("MD5");
+        md5Digest.update((url+key).getBytes());
+        StringBuilder sb = new StringBuilder();
+
+        for (byte b : md5Digest.digest()) {
+            sb.append(String.format("%02X", b));
+        }
+        return sb.toString().toLowerCase();
+    }
 }

@@ -31,11 +31,11 @@ public class CronWork {
   @Resource private ITouTiaoAdDataService touTiaoAdDataService;
   @Resource private RestTemplate restTemplate;
 
-  @Scheduled(cron = "0 0/10 * * * ?")
+  @Scheduled(cron = "0 0/5 * * * ?")
   public void hello() {
     List<TouTiaoAdData> datas =
         touTiaoAdDataService.selectList(
-            new EntityWrapper<TouTiaoAdData>().eq("delete_flag", 0).eq("is_send", 0));
+            new EntityWrapper<TouTiaoAdData>().eq("delete_flag", 0).eq("is_send", 0).isNotNull("ip"));
     if (!CollectionUtils.isEmpty(datas)) {
       for (TouTiaoAdData data : datas) {
         GamePlayerMsg msg =
@@ -43,14 +43,13 @@ public class CronWork {
                 new EntityWrapper<GamePlayerMsg>()
                     .eq("delete_flag", 0)
                     .eq("status", 0)
-                    .eq("imei", data.getImei())
-                    .or()
-                    .eq("ip", data.getIp()));
+                    .eq("ip", data.getIp())
+                    );
         if (msg != null) {
           try {
             AdCallbackResult result =
                 restTemplate.getForObject(
-                    data.getCallbackUrl() + "&os=0&event_type=0", AdCallbackResult.class);
+                    data.getCallbackUrl() + "&event_type=0", AdCallbackResult.class);
             if (result != null && result.getCode() == 0) {
               log.info("回调{}成功", data.getCallbackUrl() + "&os=0&event_type=0");
               msg.setStatus(1);

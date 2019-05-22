@@ -28,7 +28,7 @@ public class GamePlayerMsg extends Model<Admin> {
   private Long id;
   /** imei */
   @TableField("imei")
-  @ExcelField(value = "imei",title = "IMEI",sort = 3,fieldType = String.class)
+//  @ExcelField(value = "imei",title = "IMEI",sort = 3,fieldType = String.class)
   private String imei;
 
   /** imei */
@@ -36,15 +36,15 @@ public class GamePlayerMsg extends Model<Admin> {
   private String imeiEncode;
   /** ip */
   @TableField("ip")
-  @ExcelField(value = "ip",title = "ip",sort = 2,fieldType = String.class)
+  @ExcelField(value = "ip",title = "ip",sort = 0,fieldType = String.class)
   private String ip;
   /** 设备码 */
   @TableField("device_id")
-  @ExcelField(value = "deviceId",title = "设备码",sort = 1,fieldType = String.class)
+//  @ExcelField(value = "deviceId",title = "设备码",sort = 1,fieldType = String.class)
   private String deviceId;
   /** 入库时间 */
   @TableField("create_time")
-  @ExcelField(value = "createTime",title = "注册时间",sort = 0,fieldType = Date.class)
+//  @ExcelField(value = "createTime",title = "注册时间",sort = 0,fieldType = Date.class)
   private Date createTime;
   /** 是否已经匹配过 */
   @TableField("status")
