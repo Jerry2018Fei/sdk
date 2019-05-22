@@ -31,7 +31,7 @@ public class CronWork {
   @Resource private ITouTiaoAdDataService touTiaoAdDataService;
   @Resource private RestTemplate restTemplate;
 
-  @Scheduled(cron = "0 0/5 * * * ?")
+//  @Scheduled(cron = "0 0/5 * * * ?")
   public void hello() {
     List<TouTiaoAdData> datas =
         touTiaoAdDataService.selectList(
