@@ -99,7 +99,7 @@
         //执行实例
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            , url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/import' //上传接口
+            , url: setter.host+'/gamePlayerMsg/import' //上传接口
             , exts: "xls|xlsx"
             , done: function (res) {
                 //上传完毕回调
@@ -123,7 +123,7 @@
         var local = layui.data(setter.tableName);
         table.render({
             elem: '#LAY-game-data-table'
-            , url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/pageList' //模拟接口
+            , url: setter.host+'/gamePlayerMsg/pageList' //模拟接口
             , headers: {
                 "Authorization": local[setter.request.tokenName]
             }
@@ -133,7 +133,7 @@
                 , {field: 'imei', title: 'IMEI', minWidth: 100}
                 , {field: 'ip', title: 'IP'}
                 , {field: 'deviceId', title: '设备码'}
-                , {field: 'createTime', title: '注册时间', sort: true}
+                , {field: 'createTime', title: '注册时间', sort: true,templet:'<div>{{ Format(d.createTime,"yyyy-MM-dd")}}</div>'}
                 , {field: 'status', title: '匹配状态', templet: '#buttonTpl', minWidth: 80, align: 'center'}
                 // , {title: '操作', minWidth: 150, align: 'center', fixed: 'right', toolbar: '#table-row-tpl'}
             ]]
@@ -165,7 +165,7 @@
                     //执行 Ajax 后重载
 
                     admin.req({
-                        url: 'http://sdk.clover.ren:8081/api/v1/gamePlayerMsg/remove' //实际使用请改成服务端真实接口
+                        url: setter.host+'/gamePlayerMsg/remove' //实际使用请改成服务端真实接口
                         , headers: {
                             "Authorization": local[setter.request.tokenName]
                         }
