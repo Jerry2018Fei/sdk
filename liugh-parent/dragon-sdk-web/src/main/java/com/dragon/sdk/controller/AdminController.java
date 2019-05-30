@@ -13,6 +13,7 @@ import com.dragon.sdk.config.ResponseModel;
 import com.dragon.sdk.entity.Admin;
 import com.dragon.sdk.service.IAdminService;
 import com.dragon.sdk.util.ComUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +32,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "123")
 public class AdminController {
 
     @Resource

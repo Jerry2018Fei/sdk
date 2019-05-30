@@ -42,7 +42,8 @@ public class AllControllerAdvice {
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public ResponseModel<String> errorHandler(Exception ex) {
-        ex.printStackTrace();
+
+            ex.printStackTrace();
         logger.error("接口出现严重异常：{}", ex.getMessage());
         return ResponseHelper.validationFailure(PublicResultConstant.FAILED);
     }

@@ -17,10 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+
+import static com.dragon.sdk.controller.GamePlayerMsgController.underscoreName;
 
 /**
  * 前端控制器
@@ -37,13 +36,15 @@ public class TouTiaoAdDataController extends BaseController {
   @GetMapping(value = "/pageList")
   @AccessLimit(perSecond = 1, timeOut = 500) // 5秒钟生成一个令牌
   public ResponsePageModel<TouTiaoAdData> findList(
-      @RequestParam(name = "pageIndex", defaultValue = "1", required = false) Integer pageIndex,
-      @RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
+      @RequestParam(name = "page", defaultValue = "1", required = false) Integer pageIndex,
+      @RequestParam(name = "limit", defaultValue = "10", required = false) Integer pageSize,
       @RequestParam(value = "imei", defaultValue = "", required = false) String imei,
       @RequestParam(value = "idfa", defaultValue = "", required = false) String idfa,
       @RequestParam(value = "ip", defaultValue = "", required = false) String ip,
       @RequestParam(value = "createTime", defaultValue = "", required = false)
-          String createTimeRange) {
+          String createTimeRange,
+      @RequestParam(value = "field", defaultValue = "createTime", required = false) String field,
+      @RequestParam(value = "order", defaultValue = "desc", required = false) String order) {
     Wrapper<TouTiaoAdData> wrapper;
     wrapper = new EntityWrapper<>();
     if (StringUtils.isNoneBlank(imei)) {
@@ -53,7 +54,8 @@ public class TouTiaoAdDataController extends BaseController {
       wrapper = wrapper.like("ip", ip);
     }
 
-    wrapper=createTimeRange((EntityWrapper) wrapper,createTimeRange);
+    wrapper = createTimeRange((EntityWrapper) wrapper, createTimeRange)
+            .orderBy(underscoreName(field), order.equalsIgnoreCase("asc"));
     return ResponsePageHelper.buildResponseModel(
         touTiaoAdDataService.selectPage(new Page<>(pageIndex, pageSize), wrapper));
   }
@@ -69,6 +71,8 @@ public class TouTiaoAdDataController extends BaseController {
       @RequestParam(name = "os", required = false, defaultValue = "") String os,
       @RequestParam(name = "imei", required = false, defaultValue = "") String imei,
       @RequestParam(name = "idfa", required = false, defaultValue = "") String idfa,
+      @RequestParam(name = "adid", required = false, defaultValue = "") String adid,
+      @RequestParam(name = "cid", required = false, defaultValue = "") String cid,
       @RequestParam(name = "ip", required = false, defaultValue = "") String ip,
       @RequestParam(name = "callback_url", required = false, defaultValue = "")
           String callbackUrl) {
@@ -95,6 +99,8 @@ public class TouTiaoAdDataController extends BaseController {
             && checkParam(os)
             && checkParam(imei)
             && checkParam(idfa)
+            && checkParam(adid)
+            && checkParam(cid)
             && checkParam(ip)
             && checkParam(callbackUrl);
     if (!bool) {
@@ -114,12 +120,25 @@ public class TouTiaoAdDataController extends BaseController {
                 .eq("openudid", openudid)
                 .eq("os", Integer.getInteger(os))
                 .eq("imei", imei)
+                .eq("adid", adid)
+                .eq("cid", cid)
                 .eq("idfa", idfa)
                 .eq("ip", ip));
     if (count == 0) {
       TouTiaoAdData data =
           new TouTiaoAdData(
-              mac, ua, uuid, androidid, openudid, Integer.getInteger(os), callbackUrl, imei, ip,idfa);
+              mac,
+              ua,
+              uuid,
+              androidid,
+              openudid,
+              Integer.getInteger(os),
+              callbackUrl,
+              imei,
+              ip,
+              idfa,
+              adid,
+              cid);
       touTiaoAdDataService.insert(data);
       return ResponseHelper.buildResponseModel("操作成功");
     } else {
@@ -135,7 +154,7 @@ public class TouTiaoAdDataController extends BaseController {
         && msg.trim().endsWith(emptyFlag)) {
       bool = false;
     }
-    if(StringUtils.isBlank(msg)){
+    if (StringUtils.isBlank(msg)) {
       return true;
     }
     return bool;

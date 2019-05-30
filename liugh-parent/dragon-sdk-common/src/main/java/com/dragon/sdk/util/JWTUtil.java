@@ -62,6 +62,7 @@ public class JWTUtil {
       Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
       Algorithm algorithm = Algorithm.HMAC256(secret);
       // 附带username信息
+
       return JWT.create().withClaim("userNo", userNo).withExpiresAt(date).sign(algorithm);
     } catch (UnsupportedEncodingException e) {
       return null;

@@ -1,5 +1,8 @@
 package com.dragon.sdk.config;
 
+import com.dragon.sdk.base.PublicResultConstant;
+import com.dragon.sdk.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -26,10 +29,10 @@ public class ResponseHelper {
     }
 
     public static <T> ResponseModel<T> validationFailure(String message) {
-        ResponseModel response = new ResponseModel();
-        response.setCode(HttpStatus.BAD_REQUEST.value());
-        response.setMsg(message);
-        return response;
+    if (StringUtils.isNoneBlank(message)&&message.equalsIgnoreCase(PublicResultConstant.UNAUTHORIZED)){
+       return new ResponseModel(message, 1001);
+    }
+      return new ResponseModel(message, HttpStatus.BAD_REQUEST.value());
     }
 
     public static <T> ResponseModel<T> buildResponseModel(T result) {

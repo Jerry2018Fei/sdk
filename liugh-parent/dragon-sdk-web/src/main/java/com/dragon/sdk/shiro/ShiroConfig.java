@@ -71,7 +71,9 @@ public class ShiroConfig {
         //放行webSocket
         filterRuleMap.put("/websocket/*", "anon");
         //放行swagger
+        filterRuleMap.put("/v2/swagger-UI.html", "anon");
         filterRuleMap.put("/swagger-ui.html", "anon");
+        filterRuleMap.put("/swagger-UI.html", "anon");
         filterRuleMap.put("/swagger-resources", "anon");
         filterRuleMap.put("/v2/api-docs", "anon");
         filterRuleMap.put("/webjars/springfox-swagger-ui/**", "anon");

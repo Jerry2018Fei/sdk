@@ -37,8 +37,7 @@ import java.util.List;
 public class GamePlayerMsgController extends BaseController {
   private static final Logger logger = LoggerFactory.getLogger(GamePlayerMsgController.class);
   @Resource IGamePlayerMsgService gamePlayerMsgService;
-  @Resource
-  CronWork cronWork;
+  @Resource CronWork cronWork;
 
   @GetMapping(value = "/pageList")
   @AccessLimit(perSecond = 1, timeOut = 500) // 5秒钟生成一个令牌
@@ -62,7 +61,9 @@ public class GamePlayerMsgController extends BaseController {
       @RequestParam(value = "deviceId", defaultValue = "", required = false) String deviceId,
       @RequestParam(value = "ip", defaultValue = "", required = false) String ip,
       @RequestParam(value = "createTime", defaultValue = "", required = false)
-          String createTimeRange) {
+          String createTimeRange,
+      @RequestParam(value = "field", defaultValue = "createTime", required = false) String field,
+      @RequestParam(value = "order", defaultValue = "desc", required = false) String order) {
     Wrapper<GamePlayerMsg> wrapper;
     wrapper = new EntityWrapper<>();
     if (StringUtils.isNoneBlank(imei)) {
@@ -75,7 +76,10 @@ public class GamePlayerMsgController extends BaseController {
       wrapper = wrapper.like("device_id", deviceId);
     }
 
-    wrapper = createTimeRange((EntityWrapper) wrapper, createTimeRange);
+    wrapper =
+        createTimeRange((EntityWrapper) wrapper, createTimeRange)
+            .orderBy(underscoreName(field), order.equalsIgnoreCase("asc"));
+
     return ResponsePageHelper.buildResponseModel(
         gamePlayerMsgService.selectPage(new Page<>(pageIndex, pageSize), wrapper));
   }
@@ -93,13 +97,12 @@ public class GamePlayerMsgController extends BaseController {
       }
       List<GamePlayerMsg> gamePlayerMsgs2 = new ArrayList<>(10);
       for (GamePlayerMsg msg : gamePlayerMsgs) {
-        if(StringUtils.isBlank(msg.getIp())){
+        if (StringUtils.isBlank(msg.getIp())) {
           continue;
         }
         int count =
             gamePlayerMsgService.selectCount(
-                new EntityWrapper<GamePlayerMsg>()
-                    .eq("ip", msg.getIp().trim()));
+                new EntityWrapper<GamePlayerMsg>().eq("ip", msg.getIp().trim()));
         if (count > 0) {
           continue;
         }
@@ -110,20 +113,23 @@ public class GamePlayerMsgController extends BaseController {
         }
         gamePlayerMsgs2.add(msg);
       }
-      if(!CollectionUtils.isEmpty(gamePlayerMsgs2)){
+      if (!CollectionUtils.isEmpty(gamePlayerMsgs2)) {
 
         gamePlayerMsgService.insertBatch(gamePlayerMsgs2, gamePlayerMsgs2.size());
-        cronWork.hello();
-        return ResponseHelper.buildResponseModel("导入数据成功:导入"+gamePlayerMsgs2.size()+"条");
-      }else {
+        new Thread(
+                () -> {
+                  cronWork.hello();
+                })
+            .start();
+
+        return ResponseHelper.buildResponseModel("导入数据成功:导入" + gamePlayerMsgs2.size() + "条");
+      } else {
         return ResponseHelper.buildResponseModel("没有导入合适的数据");
       }
     } catch (Exception e) {
       e.printStackTrace();
       return new ResponseModel<>(e.getLocalizedMessage(), ResponseModel.FAIL.getCode());
     }
-
-
   }
 
   @DeleteMapping(value = "/remove")
@@ -136,5 +142,24 @@ public class GamePlayerMsgController extends BaseController {
     }
 
     return ResponseHelper.buildResponseModel("删除数据成功");
+  }
+
+  public static String underscoreName(String name) {
+    StringBuilder result = new StringBuilder();
+    if (name != null && name.length() > 0) {
+      // 将第一个字符处理成大写
+      result.append(name.substring(0, 1).toUpperCase());
+      // 循环处理其余字符
+      for (int i = 1; i < name.length(); i++) {
+        String s = name.substring(i, i + 1);
+        // 在大写字母前添加下划线
+        if (s.equals(s.toUpperCase()) && !Character.isDigit(s.charAt(0))) {
+          result.append("_");
+        }
+        // 其他字符直接转成大写
+        result.append(s.toUpperCase());
+      }
+    }
+    return result.toString();
   }
 }

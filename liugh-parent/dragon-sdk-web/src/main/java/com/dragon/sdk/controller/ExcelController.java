@@ -35,25 +35,25 @@ public class ExcelController {
     @GetMapping(value = "/testObject2Excel")
     public ResponseModel testObject2Excel() throws Exception{
         String tempPath = "/excelTemplate/normal_template.xlsx";
-        List<Student1> list = new ArrayList<>();
-        list.add(new Student1("1010001", "盖伦", "六年级三班"));
-        list.add(new Student1("1010002", "古尔丹", "一年级三班"));
-        list.add(new Student1("1010003", "蒙多(被开除了)", "六年级一班"));
-        list.add(new Student1("1010004", "萝卜特", "三年级二班"));
-        list.add(new Student1("1010005", "奥拉基", "三年级二班"));
-        list.add(new Student1("1010006", "得嘞", "四年级二班"));
-        list.add(new Student1("1010007", "瓜娃子", "五年级一班"));
-        list.add(new Student1("1010008", "战三", "二年级一班"));
-        list.add(new Student1("1010009", "李四", "一年级一班"));
-        Map<String, String> data = new HashMap<>();
-        data.put("title", "战争学院花名册");
-        data.put("info", "学校统一花名册");
-        // 基于模板导出Excel
-        FileOutputStream os = new FileOutputStream(new File("E://A.xlsx"));
-        ExcelUtils.getInstance().exportObjects2Excel(tempPath, list, data, Student1.class, false, os);
-        os.close();
-        // 不基于模板导出Excel
-        ExcelUtils.getInstance().exportObjects2Excel(list, Student1.class, true, null, true, "E://B.xlsx");
+//        List<Student1> list = new ArrayList<>();
+//        list.add(new Student1("1010001", "盖伦", "六年级三班"));
+//        list.add(new Student1("1010002", "古尔丹", "一年级三班"));
+//        list.add(new Student1("1010003", "蒙多(被开除了)", "六年级一班"));
+//        list.add(new Student1("1010004", "萝卜特", "三年级二班"));
+//        list.add(new Student1("1010005", "奥拉基", "三年级二班"));
+//        list.add(new Student1("1010006", "得嘞", "四年级二班"));
+//        list.add(new Student1("1010007", "瓜娃子", "五年级一班"));
+//        list.add(new Student1("1010008", "战三", "二年级一班"));
+//        list.add(new Student1("1010009", "李四", "一年级一班"));
+//        Map<String, String> data = new HashMap<>();
+//        data.put("title", "战争学院花名册");
+//        data.put("info", "学校统一花名册");
+//        // 基于模板导出Excel
+//        FileOutputStream os = new FileOutputStream(new File("E://A.xlsx"));
+//        ExcelUtils.getInstance().exportObjects2Excel(tempPath, list, data, Student1.class, false, os);
+//        os.close();
+//        // 不基于模板导出Excel
+//        ExcelUtils.getInstance().exportObjects2Excel(list, Student1.class, true, null, true, "E://B.xlsx");
         return ResponseHelper.buildResponseModel(PublicResultConstant.SUCCEED);
     }
 
@@ -62,30 +62,30 @@ public class ExcelController {
     @GetMapping(value = "/testObject2BatchSheet")
     public ResponseModel testObject2BatchSheet() throws Exception{
 
-        List<NormalSheetWrapper> sheets = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            List<Student1> list = new ArrayList<>();
-            list.add(new Student1("1010001", "盖伦", "六年级三班"));
-            list.add(new Student1("1010002", "古尔丹", "一年级三班"));
-            list.add(new Student1("1010003", "蒙多(被开除了)", "六年级一班"));
-            list.add(new Student1("1010004", "萝卜特", "三年级二班"));
-            list.add(new Student1("1010005", "奥拉基", "三年级二班"));
-            list.add(new Student1("1010006", "得嘞", "四年级二班"));
-            list.add(new Student1("1010007", "瓜娃子", "五年级一班"));
-            list.add(new Student1("1010008", "战三", "二年级一班"));
-            list.add(new Student1("1010009", "李四", "一年级一班"));
-            Map<String, String> data = new HashMap<>();
-            data.put("title", "战争学院花名册");
-            data.put("info", "学校统一花名册");
-            sheets.add(new NormalSheetWrapper(i, list, data, Student1.class, false));
-        }
-
-        String tempPath = "/excelTemplate/normal_batch_sheet_template.xlsx";
-        FileOutputStream os = new FileOutputStream(new File("E://JK.xlsx"));
-        // 基于模板导出Excel
-        ExcelUtils.getInstance().normalSheet2Excel(sheets, tempPath, "E://AA.xlsx");
-        ExcelUtils.getInstance().normalSheet2Excel(sheets, tempPath, os);
-        os.close();
+//        List<NormalSheetWrapper> sheets = new ArrayList<>();
+//        for (int i = 0; i < 2; i++) {
+//            List<Student1> list = new ArrayList<>();
+//            list.add(new Student1("1010001", "盖伦", "六年级三班"));
+//            list.add(new Student1("1010002", "古尔丹", "一年级三班"));
+//            list.add(new Student1("1010003", "蒙多(被开除了)", "六年级一班"));
+//            list.add(new Student1("1010004", "萝卜特", "三年级二班"));
+//            list.add(new Student1("1010005", "奥拉基", "三年级二班"));
+//            list.add(new Student1("1010006", "得嘞", "四年级二班"));
+//            list.add(new Student1("1010007", "瓜娃子", "五年级一班"));
+//            list.add(new Student1("1010008", "战三", "二年级一班"));
+//            list.add(new Student1("1010009", "李四", "一年级一班"));
+//            Map<String, String> data = new HashMap<>();
+//            data.put("title", "战争学院花名册");
+//            data.put("info", "学校统一花名册");
+//            sheets.add(new NormalSheetWrapper(i, list, data, Student1.class, false));
+//        }
+//
+//        String tempPath = "/excelTemplate/normal_batch_sheet_template.xlsx";
+//        FileOutputStream os = new FileOutputStream(new File("E://JK.xlsx"));
+//        // 基于模板导出Excel
+//        ExcelUtils.getInstance().normalSheet2Excel(sheets, tempPath, "E://AA.xlsx");
+//        ExcelUtils.getInstance().normalSheet2Excel(sheets, tempPath, os);
+//        os.close();
         return ResponseHelper.buildResponseModel(PublicResultConstant.SUCCEED);
     }
 

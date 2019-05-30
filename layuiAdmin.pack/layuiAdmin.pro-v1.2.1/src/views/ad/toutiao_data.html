@@ -113,22 +113,21 @@
             }
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'id', width: 100, title: 'ID', sort: true}
-                , {field: 'imei', title: 'IMEI', minWidth: 100}
-                , {field: 'idfa', title: 'IFDA', minWidth: 100}
-                , {field: 'mac', title: 'mac', minWidth: 100}
-                , {field: 'ua', title: 'ua', minWidth: 100}
-                , {field: 'uuid', title: 'uuid', minWidth: 100}
-                , {field: 'androidid', title: 'androidid', minWidth: 100}
-                , {field: 'openudid', title: 'openudid', minWidth: 100}
-                , {field: 'ip', title: 'IP'}
-                , {field: 'os', title: 'os'}
-                , {field: 'callbackUrl', title: '回调地址'}
-                , {field: 'isSend', title: '回调状态'}
+                , {field: 'id', width: 200, title: 'ID', sort: true}
+                , {field: 'imei',width: 300, title: 'IMEI', minWidth: 100}
+                , {field: 'idfa',width: 300, title: 'IFDA', minWidth: 100}
+                , {field: 'mac',width: 300, title: 'mac', minWidth: 100}
+                , {field: 'ua',width: 500, title: 'ua', minWidth: 100}
+                , {field: 'uuid',width: 200, title: 'uuid', minWidth: 100}
+                , {field: 'androidid',width: 300, title: 'androidid', minWidth: 100}
+                , {field: 'openudid',width: 200, title: 'openudid', minWidth: 100}
+                , {field: 'ip',width: 200, title: 'IP'}
+                , {field: 'os',width: 200, title: 'os'}
+                , {field: 'callbackUrl',width: 500, title: '回调地址'}
+                , {field: 'isSend',width: 200, title: '回调状态',sort: true,templet: '#buttonTpl'}
                 , {
-                    field: 'createTime', title: '注册时间', sort: true, templet: function (d) {
-                        console.log(d.createTime);
-                        console.log(util.toDateString(1558500511000))
+                    field: 'createTime',width: 200, title: '注册时间', sort: true, templet: function (d) {
+;
                         return util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss");
                     }
                 }
@@ -142,7 +141,23 @@
                 $(".layui-table-box .layui-none").text("无数据");
             }
         });
+//监听排序事件
+        table.on('sort(LAY-game-data-table)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            console.log(obj.field); //当前排序的字段名
+            console.log(obj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+            console.log(this); //当前排序的 th 对象
 
+            //尽管我们的 table 自带排序功能，但并没有请求服务端。
+            //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，从而实现服务端排序，如：
+            table.reload('LAY-game-data-table', {
+                initSort: obj //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+                ,where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                    field: obj.field //排序字段
+                    ,order: obj.type //排序方式
+                }
+            });
+
+        });
 
         var active = {
             batchdel: function () {

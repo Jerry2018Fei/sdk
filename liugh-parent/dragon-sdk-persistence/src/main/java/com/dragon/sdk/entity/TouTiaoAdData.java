@@ -1,11 +1,9 @@
 package com.dragon.sdk.entity;
 
-import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import java.io.Serializable;
@@ -25,7 +23,6 @@ import java.util.Date;
 public class TouTiaoAdData extends Model<TouTiaoAdData> {
   /** 主键 */
   @TableId("id")
-
   private Long id;
 
   /** mac */
@@ -51,7 +48,12 @@ public class TouTiaoAdData extends Model<TouTiaoAdData> {
   /** callback_url */
   @TableField("callback_url")
   private String callbackUrl;
-
+  /** adid */
+  @TableField("adid")
+  private String adid;
+  /** cid */
+  @TableField("cid")
+  private String cid;
   /** imei */
   @TableField("imei")
   private String imei;
@@ -86,7 +88,9 @@ public class TouTiaoAdData extends Model<TouTiaoAdData> {
       String callbackUrl,
       String imei,
       String ip,
-      String idfa) {
+      String idfa,
+      String adid,
+      String cid) {
     this.mac = mac;
     this.ua = ua;
     this.uuid = uuid;
@@ -100,5 +104,7 @@ public class TouTiaoAdData extends Model<TouTiaoAdData> {
     this.deleteFlag = 0;
     this.isSend = 0;
     this.idfa = idfa;
+    this.adid = adid;
+    this.cid = cid;
   }
 }
