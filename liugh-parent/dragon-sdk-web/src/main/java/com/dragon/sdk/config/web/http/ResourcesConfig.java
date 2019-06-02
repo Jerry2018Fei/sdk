@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web.http;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 

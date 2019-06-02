@@ -1,7 +1,6 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web.http;
 
 import com.dragon.sdk.base.PublicResultConstant;
-import com.dragon.sdk.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 

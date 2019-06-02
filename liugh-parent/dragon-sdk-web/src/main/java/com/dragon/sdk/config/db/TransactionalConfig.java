@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.db;
 
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.context.annotation.Bean;

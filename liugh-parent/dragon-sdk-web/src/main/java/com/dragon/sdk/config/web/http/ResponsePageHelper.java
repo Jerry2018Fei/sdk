@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web.http;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.http.HttpStatus;

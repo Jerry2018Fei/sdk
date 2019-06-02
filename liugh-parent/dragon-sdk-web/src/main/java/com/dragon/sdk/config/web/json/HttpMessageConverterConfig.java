@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web.json;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;

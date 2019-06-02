@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.db;
 
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;

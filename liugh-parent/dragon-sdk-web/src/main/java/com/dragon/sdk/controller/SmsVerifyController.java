@@ -3,8 +3,8 @@ package com.dragon.sdk.controller;
 
 import com.dragon.sdk.annotation.Log;
 import com.dragon.sdk.annotation.Pass;
-import com.dragon.sdk.config.ResponseHelper;
-import com.dragon.sdk.config.ResponseModel;
+import com.dragon.sdk.config.web.http.ResponseHelper;
+import com.dragon.sdk.config.web.http.ResponseModel;
 import com.dragon.sdk.entity.SmsVerify;
 import com.dragon.sdk.service.ISmsVerifyService;
 import io.swagger.annotations.Api;

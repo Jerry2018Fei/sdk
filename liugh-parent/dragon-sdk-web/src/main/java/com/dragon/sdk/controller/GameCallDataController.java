@@ -5,13 +5,12 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.dragon.sdk.annotation.AccessLimit;
 import com.dragon.sdk.annotation.Pass;
-import com.dragon.sdk.config.ResponseHelper;
-import com.dragon.sdk.config.ResponseModel;
-import com.dragon.sdk.config.ResponsePageHelper;
-import com.dragon.sdk.config.ResponsePageModel;
+import com.dragon.sdk.config.web.http.ResponseHelper;
+import com.dragon.sdk.config.web.http.ResponseModel;
+import com.dragon.sdk.config.web.http.ResponsePageHelper;
+import com.dragon.sdk.config.web.http.ResponsePageModel;
 import com.dragon.sdk.entity.GameCallData;
 import com.dragon.sdk.service.IGameCallDataService;
-import com.dragon.sdk.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +45,7 @@ public class GameCallDataController extends BaseController {
    * @param deviceId 设备码
    * @param ip ip
    * @param createTimeRange 注册时间范围
-   * @return com.dragon.sdk.config.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg> 数据
+   * @return com.dragon.sdk.config.web.http.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg> 数据
    */
   public ResponsePageModel<GameCallData> findList(
       @RequestParam(name = "page", defaultValue = "1", required = false) Integer pageIndex,

@@ -14,6 +14,7 @@ import com.dragon.sdk.entity.SmsVerify;
 import com.dragon.sdk.mapper.AdminMapper;
 import com.dragon.sdk.service.*;
 import com.dragon.sdk.util.*;
+import org.apache.commons.lang3.StringUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -74,12 +75,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
   @Override
   public Map<String, Object> getLoginUserAndMenuInfo(Admin admin) {
-    Map<String, Object> result = new HashMap<>();
+    Map<String, Object> result = new HashMap<>(5);
     AdminToRole adminToRole = adminToRoleService.selectByUserNo(admin.getUserNo());
     admin.setToken(JWTUtil.sign(admin.getUserNo(), admin.getPassword()));
     result.put("user", admin);
-    List<Menu> buttonList = new ArrayList<Menu>();
     // 根据角色主键查询启用的菜单权限
+    List<Menu> buttonList = new ArrayList<Menu>();
     List<Menu> menuList = menuService.findMenuByRoleCode(adminToRole.getRoleCode());
     List<Menu> retMenuList = menuService.treeMenuList(Constant.ROOT_MENU, menuList);
     for (Menu buttonMenu : menuList) {
@@ -110,6 +111,22 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     // 注意！！ 分页 total 是经过插件自动 回写 到传入 page 对象
     return userPage.setRecords(
         adminMapper.selectPageByConditionUser(userPage, info, status, startTime, endTime));
+  }
+
+  @Override
+  public Map<String, Object> checkUsernameAndPassword(JSONObject requestJson) throws Exception {
+    // 由于 @ValidationParam注解已经验证过mobile和passWord参数，所以可以直接get使用没毛病。
+    String username = requestJson.getString("username");
+
+    Admin admin =
+            this.selectOne(new EntityWrapper<Admin>().where("user_name = {0} and status = 1", username));
+    if (ComUtil.isEmpty(admin)
+            || !BCrypt.checkpw(requestJson.getString("password"), admin.getPassword())) {
+      throw new BusinessException(PublicResultConstant.INVALID_USERNAME_PASSWORD);
+    }
+
+    admin.setRoleName(null);
+    return this.getLoginUserAndMenuInfo(admin);
   }
 
   @Override
@@ -166,6 +183,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
     return this.getLoginUserAndMenuInfo(admin);
   }
+
 
   @Override
   public Admin checkAndRegisterUser(JSONObject requestJson) throws Exception {

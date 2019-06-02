@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web.http;
 
 /**
  * 统一返回相应参数实体类

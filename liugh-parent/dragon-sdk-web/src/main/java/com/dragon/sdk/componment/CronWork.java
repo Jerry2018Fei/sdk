@@ -1,9 +1,10 @@
-package com.dragon.sdk;
+package com.dragon.sdk.componment;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.dragon.sdk.entity.GamePlayerMsg;
 import com.dragon.sdk.entity.TouTiaoAdData;
+import com.dragon.sdk.po.AdCallbackResult;
 import com.dragon.sdk.service.IGamePlayerMsgService;
 import com.dragon.sdk.service.ITouTiaoAdDataService;
 import lombok.AllArgsConstructor;

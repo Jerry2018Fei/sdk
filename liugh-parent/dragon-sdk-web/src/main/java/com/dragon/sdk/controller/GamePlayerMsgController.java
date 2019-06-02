@@ -4,13 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.dragon.sdk.CronWork;
 import com.dragon.sdk.annotation.AccessLimit;
 import com.dragon.sdk.annotation.Pass;
-import com.dragon.sdk.config.ResponseHelper;
-import com.dragon.sdk.config.ResponseModel;
-import com.dragon.sdk.config.ResponsePageHelper;
-import com.dragon.sdk.config.ResponsePageModel;
+import com.dragon.sdk.componment.CronWork;
+import com.dragon.sdk.config.web.http.ResponseHelper;
+import com.dragon.sdk.config.web.http.ResponseModel;
+import com.dragon.sdk.config.web.http.ResponsePageHelper;
+import com.dragon.sdk.config.web.http.ResponsePageModel;
 import com.dragon.sdk.entity.GamePlayerMsg;
 import com.dragon.sdk.service.IGamePlayerMsgService;
 import com.dragon.sdk.util.MD5Utils;
@@ -52,7 +52,8 @@ public class GamePlayerMsgController extends BaseController {
    * @param deviceId 设备码
    * @param ip ip
    * @param createTimeRange 注册时间范围
-   * @return com.dragon.sdk.config.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg> 数据
+   * @return com.dragon.sdk.config.web.http.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg>
+   *     数据
    */
   public ResponsePageModel<GamePlayerMsg> findList(
       @RequestParam(name = "page", defaultValue = "1", required = false) Integer pageIndex,
@@ -126,6 +127,23 @@ public class GamePlayerMsgController extends BaseController {
       } else {
         return ResponseHelper.buildResponseModel("没有导入合适的数据");
       }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseModel<>(e.getLocalizedMessage(), ResponseModel.FAIL.getCode());
+    }
+  }
+
+  @RequestMapping(value = "/import1")
+  @Pass
+  public ResponseModel<String> import1(@RequestParam(name = "file") MultipartFile file) {
+
+    try {
+      ImportExcel importExcel = new ImportExcel(file, 0, 0);
+      List<List<String>> lists = importExcel.getDataList();
+      logger.info(JSONObject.toJSONString(lists));
+
+      return ResponseHelper.buildResponseModel("导入数据成功:导入n条");
+
     } catch (Exception e) {
       e.printStackTrace();
       return new ResponseModel<>(e.getLocalizedMessage(), ResponseModel.FAIL.getCode());

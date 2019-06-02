@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.dragon.sdk.annotation.Log;
 import com.dragon.sdk.annotation.Pass;
-import com.dragon.sdk.config.ResourcesConfig;
+import com.dragon.sdk.config.web.http.ResourcesConfig;
 import com.dragon.sdk.config.ThirdPartyLoginHelper;
 import com.dragon.sdk.entity.Admin;
 import com.dragon.sdk.entity.UserThirdparty;

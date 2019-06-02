@@ -1,4 +1,4 @@
-package com.dragon.sdk;
+package com.dragon.sdk.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +40,7 @@ public class SwaggerConfig {
         // 非必需，这里是全局配置，然而在登陆的时候是不用验证的
         .required(false)
         .build();
-    List<Parameter> aParameters = new ArrayList<Parameter>();
+    List<Parameter> aParameters = new ArrayList<>();
     aParameters.add(aParameterBuilder.build());
     return new Docket(DocumentationType.SWAGGER_2)
         .enable(true)

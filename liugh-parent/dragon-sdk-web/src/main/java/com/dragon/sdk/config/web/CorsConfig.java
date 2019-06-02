@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class CorsConfig {
         // 1允许服务端访问
         corsConfiguration.addAllowedOrigin("*");
         // 1.1允许本地访问
-        corsConfiguration.addAllowedOrigin("http://localhost:4200");
+//        corsConfiguration.addAllowedOrigin("http://localhost:4200");
         // 2允许任何头
         corsConfiguration.addAllowedHeader("*");
         // 3允许任何方法（post、get等）

@@ -17,8 +17,8 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function (exports) {
         , pageTabs: false //是否开启页面选项卡功能。单页版不推荐开启
 
         , name: 'layuiAdmin Pro'
-        // , host: 'http://localhost:8081/api/v1'
-        ,host: 'http://sdk.clover.ren:8081/api/v1'
+        , host: 'http://localhost:8081/api/v1'
+        // ,host: 'http://sdk.clover.ren:8081/api/v1'
         , tableName: 'layuiAdmin' //本地存储表名
         , MOD_NAME: 'admin' //模块事件名
 

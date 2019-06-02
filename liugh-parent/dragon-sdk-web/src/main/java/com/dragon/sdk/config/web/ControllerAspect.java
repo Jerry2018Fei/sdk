@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web;
 
 import com.dragon.sdk.annotation.AccessLimit;
 import com.dragon.sdk.annotation.Log;

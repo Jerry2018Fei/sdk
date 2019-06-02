@@ -2,6 +2,7 @@ package com.dragon.sdk.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.dragon.sdk.config.web.http.ResourcesConfig;
 import com.dragon.sdk.model.ThirdPartyUser;
 import com.dragon.sdk.util.HttpUtil;
 import org.apache.commons.httpclient.NameValuePair;

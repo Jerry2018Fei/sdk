@@ -3,7 +3,7 @@ package com.dragon.sdk.shiro;
 import com.alibaba.fastjson.JSONObject;
 import com.dragon.sdk.base.Constant;
 import com.dragon.sdk.base.PublicResultConstant;
-import com.dragon.sdk.config.ResponseHelper;
+import com.dragon.sdk.config.web.http.ResponseHelper;
 import com.dragon.sdk.entity.Admin;
 import com.dragon.sdk.service.IAdminService;
 import com.dragon.sdk.service.SpringContextBeanService;

@@ -1,4 +1,4 @@
-package com.dragon.sdk;
+package com.dragon.sdk.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

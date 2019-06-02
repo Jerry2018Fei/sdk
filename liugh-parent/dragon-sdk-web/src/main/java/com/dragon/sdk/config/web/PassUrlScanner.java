@@ -1,4 +1,4 @@
-package com.dragon.sdk.config;
+package com.dragon.sdk.config.web;
 
 import com.dragon.sdk.annotation.Pass;
 import com.dragon.sdk.base.Constant;
@@ -28,7 +28,7 @@ import java.util.jar.JarFile;
 @Component
 //日志打印 log.info
 @Slf4j
-public class MyCommandLineRunner implements CommandLineRunner {
+public class PassUrlScanner implements CommandLineRunner {
 
 
 	@Value("${controller.scanPackage}")
