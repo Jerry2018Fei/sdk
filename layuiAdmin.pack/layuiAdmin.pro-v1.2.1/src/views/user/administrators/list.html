@@ -62,10 +62,12 @@
       
       <table id="LAY-user-back-manage" lay-filter="LAY-user-back-manage"></table>  
       <script type="text/html" id="buttonTpl">
-        {{#  if(d.check == true){ }}
-          <button class="layui-btn layui-btn-xs">已审核</button>
+        {{#  if(d.status == 1){ }}
+          <button class="layui-btn layui-btn-xs">启用</button>
+        {{#  } else if(d.status == 2){ }}
+          <button class="layui-btn layui-btn-primary layui-btn-xs">禁用</button>
         {{#  } else { }}
-          <button class="layui-btn layui-btn-primary layui-btn-xs">未审核</button>
+        <button class="layui-btn layui-btn-warm layui-btn-xs">已删除</button>
         {{#  } }}
       </script>
       <script type="text/html" id="table-useradmin-admin">
