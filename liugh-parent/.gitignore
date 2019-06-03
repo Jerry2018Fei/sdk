@@ -7,3 +7,9 @@ target/
 .settings/
 .classpath
 /logs
+C:/
+dragon-sdk-common/src/docs/
+dragon-sdk-common/src/main/java/com/dragon/.DS_Store
+dragon-sdk-persistence/src/docs/
+dragon-sdk-service/src/docs/
+dragon-sdk-web/src/docs/

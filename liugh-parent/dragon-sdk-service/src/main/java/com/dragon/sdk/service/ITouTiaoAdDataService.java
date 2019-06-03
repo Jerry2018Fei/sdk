@@ -1,10 +1,7 @@
 package com.dragon.sdk.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.dragon.sdk.entity.Admin;
 import com.dragon.sdk.entity.TouTiaoAdData;
-import com.dragon.sdk.entity.UserThirdparty;
-import com.dragon.sdk.model.ThirdPartyUser;
 
 /**
  * <p>

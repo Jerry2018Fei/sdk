@@ -1,7 +1,6 @@
 package com.dragon.sdk.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.dragon.sdk.entity.GamePlayerMsg;
 import com.dragon.sdk.entity.TouTiaoAdData;
 
 /**

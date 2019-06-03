@@ -1,12 +1,7 @@
 package com.dragon.sdk.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.dragon.sdk.entity.Admin;
 import com.dragon.sdk.entity.GamePlayerMsg;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * Mapper 接口

@@ -1,11 +1,10 @@
 package com.dragon.sdk.entity;
 
-import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.dragon.sdk.util.excel.annotation.ExcelField;
+import com.clover.common.util.excel.annotation.ExcelField;
 import lombok.*;
 
 import java.io.Serializable;
@@ -22,7 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @TableName("game_player_msg")
-public class GamePlayerMsg extends Model<Admin> {
+public class GamePlayerMsg extends Model<GamePlayerMsg> {
   /** 主键 */
   @TableId("id")
   private Long id;
