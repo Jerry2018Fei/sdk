@@ -1,7 +1,10 @@
 package com.dragon.sdk.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.dragon.sdk.entity.GameCallData;
 import com.dragon.sdk.entity.TouTiaoAdData;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,5 @@ import com.dragon.sdk.entity.TouTiaoAdData;
 public interface ITouTiaoAdDataService extends IService<TouTiaoAdData> {
 
 
+    List<TouTiaoAdData> selectByGameCallData(GameCallData gameCallData);
 }

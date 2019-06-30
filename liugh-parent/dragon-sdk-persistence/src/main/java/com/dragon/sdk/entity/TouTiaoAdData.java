@@ -102,7 +102,7 @@ public class TouTiaoAdData extends Model<TouTiaoAdData> {
     this.ip = ip;
     this.createTime = new Date();
     this.deleteFlag = 0;
-    this.isSend = 0;
+    this.isSend = -1;
     this.idfa = idfa;
     this.adid = adid;
     this.cid = cid;

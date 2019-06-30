@@ -123,7 +123,7 @@ public class GamePlayerMsgController extends BaseController {
         gamePlayerMsgService.insertBatch(gamePlayerMsgs2, gamePlayerMsgs2.size());
         new Thread(
                 () -> {
-                  cronWork.hello();
+                  cronWork.cron();
                 })
             .start();
 

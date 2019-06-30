@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.1.RELEASE</version>
+        <artifactId>clover-common-parent</artifactId>
+        <groupId>com.clover.ren.common</groupId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
@@ -105,15 +105,17 @@
         </dependency>
 
 
-
-
-
         <dependency>
-            <groupId>com.dragon.sdk</groupId>
-            <artifactId>dragon-sdk-web-common</artifactId>
+            <groupId>com.clover.ren.common</groupId>
+            <artifactId>clover-common-jwt-web</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <artifactId>clover-common-utils</artifactId>
+            <groupId>com.clover.ren.common</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 

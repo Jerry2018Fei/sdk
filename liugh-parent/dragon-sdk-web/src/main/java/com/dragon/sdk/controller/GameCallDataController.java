@@ -3,7 +3,6 @@ package com.dragon.sdk.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-
 import com.clover.common.annotation.AccessLimit;
 import com.clover.common.annotation.Pass;
 import com.clover.common.config.web.http.ResponseHelper;
@@ -11,6 +10,7 @@ import com.clover.common.config.web.http.ResponseModel;
 import com.clover.common.config.web.http.ResponsePageHelper;
 import com.clover.common.config.web.http.ResponsePageModel;
 import com.clover.common.controller.BaseController;
+import com.dragon.sdk.componment.CronWork;
 import com.dragon.sdk.entity.GameCallData;
 import com.dragon.sdk.service.IGameCallDataService;
 import org.apache.commons.lang.StringUtils;
@@ -33,6 +33,7 @@ import java.util.List;
 public class GameCallDataController extends BaseController {
   private static final Logger logger = LoggerFactory.getLogger(GameCallDataController.class);
   @Resource IGameCallDataService gameCallDataService;
+  @Resource CronWork cronWork;
 
   @GetMapping(value = "/pageList")
   @AccessLimit(perSecond = 1, timeOut = 500) // 5秒钟生成一个令牌
@@ -47,7 +48,8 @@ public class GameCallDataController extends BaseController {
    * @param deviceId 设备码
    * @param ip ip
    * @param createTimeRange 注册时间范围
-   * @return com.dragon.sdk.config.web.http.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg> 数据
+   * @return com.dragon.sdk.config.web.http.ResponsePageModel<com.dragon.sdk.entity.GamePlayerMsg>
+   *     数据
    */
   public ResponsePageModel<GameCallData> findList(
       @RequestParam(name = "page", defaultValue = "1", required = false) Integer pageIndex,
@@ -66,7 +68,7 @@ public class GameCallDataController extends BaseController {
       @RequestParam(name = "mac", defaultValue = "", required = false) String mac,
       @RequestParam(name = "imei", defaultValue = "", required = false) String imei,
       @RequestParam(name = "idfa", defaultValue = "", required = false) String idfa,
-      @RequestParam(name = "androidid", defaultValue = "", required = false) String androidid,
+      @RequestParam(name = "andoridid", defaultValue = "", required = false) String androidid,
       @RequestParam(name = "eventType", required = true) Integer eventType) {
 
     try {
@@ -107,28 +109,30 @@ public class GameCallDataController extends BaseController {
       wrapper = wrapper.last("limit 1");
       GameCallData gameCallData = gameCallDataService.selectOne(wrapper);
       if (gameCallData == null) {
-        gameCallData = new GameCallData(type, idfa, imei, mac,androidid, eventType);
+        gameCallData = new GameCallData(type, idfa, imei, mac, androidid, eventType);
         gameCallDataService.insert(gameCallData);
+
       } else {
         if (gameCallData.getEventType() < eventType) {
           gameCallData.setEventType(eventType);
-
         }
-        if(StringUtils.isNotBlank(mac)){
+        if (StringUtils.isNotBlank(mac)) {
           gameCallData.setMac(mac);
         }
-        if(StringUtils.isNotBlank(imei)){
+        if (StringUtils.isNotBlank(imei)) {
           gameCallData.setImei(imei);
         }
-        if(StringUtils.isNotBlank(idfa)){
+        if (StringUtils.isNotBlank(idfa)) {
           gameCallData.setIdfa(idfa);
         }
-        if(StringUtils.isNotBlank(androidid)){
+        if (StringUtils.isNotBlank(androidid)) {
           gameCallData.setAndroidid(androidid);
         }
         gameCallData.setUpdateTime(new Date());
         gameCallDataService.updateById(gameCallData);
       }
+      // todo 回调头条
+      cronWork.checkGameCallData(gameCallData);
       return ResponseHelper.buildResponseModel("接收数据成功");
     } catch (Exception e) {
       e.printStackTrace();

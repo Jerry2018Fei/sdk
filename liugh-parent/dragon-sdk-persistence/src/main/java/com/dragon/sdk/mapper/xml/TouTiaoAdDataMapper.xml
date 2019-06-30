@@ -4,20 +4,80 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dragon.sdk.entity.TouTiaoAdData">
-        <id column="id" property="id" />
-        <result column="imei" property="imei" />
-        <result column="ip" property="ip" />
-        <result column="is_send" property="isSend" />
-        <result column="create_time" property="createTime" />
-        <result column="delete_flag" property="deleteFlag" />
+        <result column="id" property="id"/>
+        <result column="imei" property="imei"/>
+        <result column="idfa" property="idfa"/>
+        <result column="mac" property="mac"/>
+        <result column="ua" property="ua"/>
+        <result column="uuid" property="uuid"/>
+        <result column="androidid" property="androidid"/>
+        <result column="openudid" property="openudid"/>
+        <result column="ip" property="ip"/>
+        <result column="os" property="os"/>
+        <result column="callback_url" property="callbackUrl"/>
+        <result column="is_send" property="isSend"/>
+        <result column="create_time" property="createTime"/>
+        <result column="delete_flag" property="deleteFlag"/>
+        <result column="adid" property="adid"/>
+        <result column="cid" property="cid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id , mobile, imei, ip, unit, create_time AS createTime, delete_flag as deleteFlag
+        `id`,
+                `imei`,
+                `idfa`,
+                `mac`,
+                `ua`,
+                `uuid`,
+                `androidid`,
+                `openudid`,
+                `ip`,
+                `os`,
+                `callback_url`,
+                `is_send`,
+                `create_time`,
+                `delete_flag`,
+                `adid`,
+                `cid`
     </sql>
 
+    <select id="selectByGameCallData" parameterType="com.dragon.sdk.entity.GameCallData" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM toutiao_ad_data
+        <where>
+            delete_flag=0
+            <if test="@com.dragon.sdk.Ognl@isNotEmpty( mac )">
+                AND mac = #{mac}
+            </if>
+            <if test="@com.dragon.sdk.Ognl@isNotEmpty( androidid )">
+                AND androidid = #{androidid}
+            </if>
+            <if test="@com.dragon.sdk.Ognl@isNotEmpty( imei )">
+                AND imei = #{imei}
+            </if>
+            <if test="@com.dragon.sdk.Ognl@isNotEmpty( idfa )">
+                AND idfa = #{idfa}
+            </if>
+            and create_time <![CDATA[ <= ]]> #{updateTime}
+            <choose>
+                <when test="eventType==1">
+                    and is_send=-1
+                </when>
+                <when test="eventType==2">
+                    and is_send in(-1,0)
+                </when>
+                <when test="eventType==3">
+                    and is_send in(-1,0,1)
+                </when>
+            </choose>
 
+        </where>
+
+
+
+    </select>
 
 
 </mapper>
