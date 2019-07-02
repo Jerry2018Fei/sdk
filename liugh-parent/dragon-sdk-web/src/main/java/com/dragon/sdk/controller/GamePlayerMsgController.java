@@ -121,11 +121,7 @@ public class GamePlayerMsgController extends BaseController {
       if (!CollectionUtils.isEmpty(gamePlayerMsgs2)) {
 
         gamePlayerMsgService.insertBatch(gamePlayerMsgs2, gamePlayerMsgs2.size());
-        new Thread(
-                () -> {
-                  cronWork.cron();
-                })
-            .start();
+
 
         return ResponseHelper.buildResponseModel("导入数据成功:导入" + gamePlayerMsgs2.size() + "条");
       } else {

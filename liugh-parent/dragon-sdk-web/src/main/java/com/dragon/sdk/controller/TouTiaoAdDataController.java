@@ -120,32 +120,29 @@ public class TouTiaoAdDataController extends BaseController {
                 .eq("uuid", uuid)
                 .eq("androidid", androidid)
                 .eq("openudid", openudid)
-                .eq("os", Integer.getInteger(os))
+//                .eq("os", Integer.getInteger(os))
                 .eq("imei", imei)
                 .eq("adid", adid)
                 .eq("cid", cid)
                 .eq("idfa", idfa)
                 .eq("ip", ip));
-    if (count == 0) {
-      TouTiaoAdData data =
-          new TouTiaoAdData(
-              mac,
-              ua,
-              uuid,
-              androidid,
-              openudid,
-              Integer.getInteger(os),
-              callbackUrl,
-              imei,
-              ip,
-              idfa,
-              adid,
-              cid);
-      touTiaoAdDataService.insert(data);
-      return ResponseHelper.buildResponseModel("操作成功");
-    } else {
-      return new ResponseModel<>("接收数据异常,重复数据", ResponseModel.FAIL.getCode());
-    }
+
+    TouTiaoAdData data =
+            new TouTiaoAdData(
+                    mac,
+                    ua,
+                    uuid,
+                    androidid,
+                    openudid,
+                    Integer.getInteger(os),
+                    callbackUrl,
+                    imei,
+                    ip,
+                    idfa,
+                    adid,
+                    cid);
+    touTiaoAdDataService.insert(data);
+    return ResponseHelper.buildResponseModel("操作成功");
   }
 
   private boolean checkParam(String msg) {

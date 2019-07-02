@@ -82,6 +82,10 @@ public class GameCallDataController extends BaseController {
       Wrapper<GameCallData> wrapper = new EntityWrapper<>();
       boolean bool;
       if (StringUtils.isNotBlank(mac)) {
+        if (mac.trim().contains("00:00:00")){
+          logger.error("mac信息异常");
+          return ResponseHelper.buildResponseModel("接收数据成功");
+        }
         bool = true;
         wrapper = wrapper.eq("mac", mac);
       }
@@ -93,6 +97,11 @@ public class GameCallDataController extends BaseController {
         wrapper = wrapper.eq("imei", imei);
       }
       if (StringUtils.isNotBlank(idfa)) {
+        if (idfa.trim().contains("00000000")){
+          logger.error("idfa信息异常");
+
+          return ResponseHelper.buildResponseModel("接收数据成功");
+        }
         bool = true;
         if (bool) {
           wrapper = wrapper.or();
