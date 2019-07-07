@@ -15,11 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -48,12 +50,12 @@ public class CronWork {
   @Resource private RestTemplate restTemplate;
   @Resource private Executor taskAsyncPool;
 
-  //  @PostConstruct
+  @PostConstruct
   public void init() {
     deleteToutiaoData();
   }
 
-  //  @Scheduled(cron = "0 0 0 ? * ? ")
+  @Scheduled(cron = "0 0 0 ? * ? ")
   private void deleteToutiaoData() {
     log.info("清理超过七天未匹配数据");
     touTiaoAdDataService.delete(
@@ -95,9 +97,8 @@ public class CronWork {
         imei = getMD5Sum(imei(imei));
         gameCallData.setImei(imei);
       } catch (Exception e) {
-        log.error("imei加密异常：{}",e.getLocalizedMessage());
+        log.error("imei加密异常：{}", e.getLocalizedMessage());
       }
-
     }
 
     if (!StringUtils.isEmpty(gameCallData.getMac())) {
@@ -124,11 +125,11 @@ public class CronWork {
         !StringUtils.isEmpty(gameCallData.getIdfa())
             || (!StringUtils.isEmpty(gameCallData.getImei())
                 || !StringUtils.isEmpty(gameCallData.getAndroidid()));
-    if(!b){
+    if (!b) {
       return;
     }
     List<TouTiaoAdData> dataList = touTiaoAdDataService.selectByGameCallData(gameCallData);
-    log.info(dataList.size()+"");
+    log.info(dataList.size() + "");
     if (!CollectionUtils.isEmpty(dataList)) {
       for (TouTiaoAdData data : dataList) {
         if (data != null) {
