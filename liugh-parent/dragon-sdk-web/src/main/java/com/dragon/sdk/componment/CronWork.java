@@ -2,6 +2,7 @@ package com.dragon.sdk.componment;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.clover.common.util.MD5Utils;
 import com.dragon.sdk.entity.GameCallData;
 import com.dragon.sdk.entity.TouTiaoAdData;
 import com.dragon.sdk.po.AdCallbackResult;
@@ -14,14 +15,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -45,12 +48,12 @@ public class CronWork {
   @Resource private RestTemplate restTemplate;
   @Resource private Executor taskAsyncPool;
 
-  @PostConstruct
+  //  @PostConstruct
   public void init() {
     deleteToutiaoData();
   }
 
-  @Scheduled(cron = "0 0 0 ? * ? ")
+  //  @Scheduled(cron = "0 0 0 ? * ? ")
   private void deleteToutiaoData() {
     log.info("清理超过七天未匹配数据");
     touTiaoAdDataService.delete(
@@ -62,17 +65,39 @@ public class CronWork {
 
     gameCallDataService.delete(
         new EntityWrapper<GameCallData>().like("mac", "00:00:00").or().like("idfa", "00000000"));
+
+    taskAsyncPool.execute(
+        () -> {
+          log.info("自动匹配客户端数据");
+
+          List<GameCallData> dataList = gameCallDataService.selectList(new EntityWrapper<>());
+          if (!CollectionUtils.isEmpty(dataList)) {
+            for (GameCallData d : dataList) {
+              try {
+                checkGameCallData(d);
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+            }
+          }
+        });
   }
 
   public void checkGameCallData(@NonNull GameCallData gameCallData) {
+    if (StringUtils.isEmpty(gameCallData.getAndroidid())
+        && StringUtils.isEmpty(gameCallData.getImei())
+        && StringUtils.isEmpty(gameCallData.getIdfa())) {
+      return;
+    }
     if (!StringUtils.isEmpty(gameCallData.getImei())) {
       String imei = gameCallData.getImei();
       try {
         imei = getMD5Sum(imei(imei));
+        gameCallData.setImei(imei);
       } catch (Exception e) {
-        e.printStackTrace();
+        log.error("imei加密异常：{}",e.getLocalizedMessage());
       }
-      gameCallData.setImei(imei);
+
     }
 
     if (!StringUtils.isEmpty(gameCallData.getMac())) {
@@ -89,13 +114,21 @@ public class CronWork {
     if (!StringUtils.isEmpty(gameCallData.getAndroidid())) {
       String androidid = gameCallData.getAndroidid();
       try {
-        androidid = getMD5Sum(androidid);
+        androidid = MD5Utils.string2MD5(androidid).toLowerCase();
       } catch (Exception e) {
         e.printStackTrace();
       }
       gameCallData.setAndroidid(androidid);
     }
+    boolean b =
+        !StringUtils.isEmpty(gameCallData.getIdfa())
+            || (!StringUtils.isEmpty(gameCallData.getImei())
+                || !StringUtils.isEmpty(gameCallData.getAndroidid()));
+    if(!b){
+      return;
+    }
     List<TouTiaoAdData> dataList = touTiaoAdDataService.selectByGameCallData(gameCallData);
+    log.info(dataList.size()+"");
     if (!CollectionUtils.isEmpty(dataList)) {
       for (TouTiaoAdData data : dataList) {
         if (data != null) {
@@ -160,8 +193,11 @@ public class CronWork {
   }
 
   public static void main(String[] args) throws Exception {
-    System.out.println(getMD5Sum(imei("86634103984145")));
-    System.out.println(getMD5Sum(imei("869095036103950")));
+    System.out.println(getMD5Sum(imei("868953042454828")));
+    System.out.println(md5sum("99000758283350"));
+    //    System.out.println(md5sum(imei("99000758283350")));
+    System.out.println(MD5Utils.string2MD5("7763c6a6486d5ce8"));
+    //    System.out.println(getMD5Sum(imei("869095036103950")));
   }
 
   public static String getMD5Sum(String need2Encode) throws NoSuchAlgorithmException {
@@ -199,5 +235,35 @@ public class CronWork {
     resultInt %= 10;
     resultInt = resultInt == 0 ? 0 : 10 - resultInt;
     return msg + resultInt;
+  }
+
+  public static String md5sum(String msg) {
+    String command = "echo -n '" + msg + "'|md5sum|cut -d ' ' -f1";
+    System.out.println(command);
+    try {
+      Process process = Runtime.getRuntime().exec(command);
+      BufferedInputStream bis = new BufferedInputStream(process.getInputStream());
+      BufferedReader br = new BufferedReader(new InputStreamReader(bis));
+      String line;
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+        return line;
+      }
+
+      process.waitFor();
+      if (process.exitValue() != 0) {
+        System.out.println("error!");
+      }
+
+      bis.close();
+      br.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return "";
   }
 }

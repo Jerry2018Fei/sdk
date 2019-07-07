@@ -80,14 +80,17 @@ public class GameCallDataController extends BaseController {
         throw new Exception("设备参数不可以为空");
       }
       Wrapper<GameCallData> wrapper = new EntityWrapper<>();
-      boolean bool;
+      boolean bool = false;
+      boolean macNormal = true;
       if (StringUtils.isNotBlank(mac)) {
-        if (mac.trim().contains("00:00:00")){
+        if (mac.trim().contains("00:00:00")) {
           logger.error("mac信息异常");
-          return ResponseHelper.buildResponseModel("接收数据成功");
+          macNormal = false;
         }
-        bool = true;
-        wrapper = wrapper.eq("mac", mac);
+        if (macNormal) {
+          bool = true;
+          wrapper = wrapper.eq("mac", mac);
+        }
       }
       if (StringUtils.isNotBlank(imei)) {
         bool = true;
@@ -97,7 +100,7 @@ public class GameCallDataController extends BaseController {
         wrapper = wrapper.eq("imei", imei);
       }
       if (StringUtils.isNotBlank(idfa)) {
-        if (idfa.trim().contains("00000000")){
+        if (idfa.trim().contains("00000000")) {
           logger.error("idfa信息异常");
 
           return ResponseHelper.buildResponseModel("接收数据成功");
@@ -116,16 +119,21 @@ public class GameCallDataController extends BaseController {
         wrapper = wrapper.eq("androidid", androidid);
       }
       wrapper = wrapper.last("limit 1");
+      if (!bool) {
+        logger.info("没有找到有效的设备参数");
+
+        return ResponseHelper.buildResponseModel("接收数据成功");
+      }
       GameCallData gameCallData = gameCallDataService.selectOne(wrapper);
       if (gameCallData == null) {
-        gameCallData = new GameCallData(type, idfa, imei, mac, androidid, eventType);
+        gameCallData = new GameCallData(type, idfa, imei, macNormal?mac:null, androidid, eventType);
         gameCallDataService.insert(gameCallData);
 
       } else {
         if (gameCallData.getEventType() < eventType) {
           gameCallData.setEventType(eventType);
         }
-        if (StringUtils.isNotBlank(mac)) {
+        if (StringUtils.isNotBlank(mac)&&macNormal) {
           gameCallData.setMac(mac);
         }
         if (StringUtils.isNotBlank(imei)) {
@@ -140,7 +148,7 @@ public class GameCallDataController extends BaseController {
         gameCallData.setUpdateTime(new Date());
         gameCallDataService.updateById(gameCallData);
       }
-      // todo 回调头条
+
       cronWork.checkGameCallData(gameCallData);
       return ResponseHelper.buildResponseModel("接收数据成功");
     } catch (Exception e) {

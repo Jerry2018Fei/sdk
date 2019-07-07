@@ -30,7 +30,8 @@ import static com.dragon.sdk.controller.GamePlayerMsgController.underscoreName;
  * @since 2019-05-09
  */
 @RestController
-@RequestMapping("/touTiaoAdData")
+@RequestMapping("/t_ad")
+//@RequestMapping("/touTiaoAdData")
 public class TouTiaoAdDataController extends BaseController {
   private static final Logger logger = LoggerFactory.getLogger(TouTiaoAdDataController.class);
   @Resource ITouTiaoAdDataService touTiaoAdDataService;
@@ -62,7 +63,8 @@ public class TouTiaoAdDataController extends BaseController {
         touTiaoAdDataService.selectPage(new Page<>(pageIndex, pageSize), wrapper));
   }
 
-  @GetMapping(value = "/addData")
+  @GetMapping(value = "/receive")
+//  @GetMapping(value = "/addData")
   @Pass
   public ResponseModel<String> addData(
       @RequestParam(name = "ua", required = false, defaultValue = "") String ua,
@@ -70,7 +72,7 @@ public class TouTiaoAdDataController extends BaseController {
       @RequestParam(name = "uuid", required = false, defaultValue = "") String uuid,
       @RequestParam(name = "androidid", required = false, defaultValue = "") String androidid,
       @RequestParam(name = "openudid", required = false, defaultValue = "") String openudid,
-      @RequestParam(name = "os", required = false, defaultValue = "") String os,
+//      @RequestParam(name = "os", required = false, defaultValue = "") String os,
       @RequestParam(name = "imei", required = false, defaultValue = "") String imei,
       @RequestParam(name = "idfa", required = false, defaultValue = "") String idfa,
       @RequestParam(name = "adid", required = false, defaultValue = "") String adid,
@@ -81,13 +83,12 @@ public class TouTiaoAdDataController extends BaseController {
 
     logger.info(
         "ua:{}, mac:{}, uuid:{}, androidid:{}, openudid:{}, "
-            + "os:{}, imei:{},idfa:{}, ip:{}, callbackUrl:{}",
+            + " imei:{},idfa:{}, ip:{}, callbackUrl:{}",
         ua,
         mac,
         uuid,
         androidid,
         openudid,
-        os,
         imei,
         idfa,
         ip,
@@ -98,7 +99,6 @@ public class TouTiaoAdDataController extends BaseController {
             && checkParam(uuid)
             && checkParam(androidid)
             && checkParam(openudid)
-            && checkParam(os)
             && checkParam(imei)
             && checkParam(idfa)
             && checkParam(adid)
@@ -108,9 +108,7 @@ public class TouTiaoAdDataController extends BaseController {
     if (!bool) {
       return new ResponseModel<>("接收到无效信息", ResponseModel.FAIL.getCode());
     }
-    if (!StringUtils.isNumeric(os)) {
-      os = "";
-    }
+
 
     int count =
         touTiaoAdDataService.selectCount(
@@ -134,7 +132,7 @@ public class TouTiaoAdDataController extends BaseController {
                     uuid,
                     androidid,
                     openudid,
-                    Integer.getInteger(os),
+                    null,
                     callbackUrl,
                     imei,
                     ip,

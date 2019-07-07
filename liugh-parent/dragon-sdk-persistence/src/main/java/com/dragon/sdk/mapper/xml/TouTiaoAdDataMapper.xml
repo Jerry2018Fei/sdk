@@ -48,15 +48,21 @@
         FROM toutiao_ad_data
         <where>
             delete_flag=0
-<!--            <if test="@com.dragon.sdk.Ognl@isNotEmpty( mac )">-->
-<!--                AND mac = #{mac}-->
-<!--            </if>-->
-            <if test="@com.dragon.sdk.Ognl@isNotEmpty( androidid )">
-                AND androidid = #{androidid}
-            </if>
-            <if test="@com.dragon.sdk.Ognl@isNotEmpty( imei )">
-                AND imei = #{imei}
-            </if>
+            <!--            <if test="@com.dragon.sdk.Ognl@isNotEmpty( mac )">-->
+            <!--                AND mac = #{mac}-->
+            <!--            </if>-->
+            <choose>
+                <when test="@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isNotEmpty( imei )">
+                    AND (androidid = #{androidid} or imei = #{imei})
+                </when>
+                <when test="@com.dragon.sdk.Ognl@isNotEmpty( imei ) and  @com.dragon.sdk.Ognl@isEmpty( androidid )">
+                    AND imei = #{imei}
+                </when>
+                <when test="@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isEmpty( imei )">
+                    AND androidid = #{androidid}
+                </when>
+            </choose>
+
             <if test="@com.dragon.sdk.Ognl@isNotEmpty( idfa )">
                 AND idfa = #{idfa}
             </if>
@@ -74,7 +80,6 @@
             </choose>
 
         </where>
-
 
 
     </select>
