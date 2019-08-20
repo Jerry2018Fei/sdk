@@ -2,8 +2,6 @@ package com.dragon.sdk.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.dragon.sdk.entity.TClickIosData;
-import com.dragon.sdk.entity.ThirdpartyGamePushAndroidData;
-import com.dragon.sdk.entity.TouTiaoAdData;
 
 import java.util.List;
 
@@ -21,5 +19,5 @@ public interface ITClickIosDataService extends IService<TClickIosData> {
     @Override
     boolean insert(TClickIosData entity);
 
-    List<TClickIosData> selectByDevice(String idfa);
+    List<TClickIosData> selectByDevice(String idfa, Integer eventType);
 }

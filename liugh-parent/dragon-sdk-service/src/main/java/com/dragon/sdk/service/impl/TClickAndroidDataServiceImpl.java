@@ -2,11 +2,8 @@ package com.dragon.sdk.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.dragon.sdk.entity.TClickAndroidData;
-import com.dragon.sdk.entity.ThirdpartyGamePushAndroidData;
 import com.dragon.sdk.mapper.TClickAndroidDataMapper;
-import com.dragon.sdk.mapper.ThirdpartyGamePushAndroidDataMapper;
 import com.dragon.sdk.service.ITClickAndroidDataService;
-import com.dragon.sdk.service.IThirdpartyGamePushAndroidDataService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,7 +28,7 @@ public class TClickAndroidDataServiceImpl extends ServiceImpl<TClickAndroidDataM
     }
 
     @Override
-    public List<TClickAndroidData> selectByDevice(String androidid, String imei) {
-        return mapper.selectByDevice(androidid,imei);
+    public List<TClickAndroidData> selectByDevice(String androidid, String imei, Integer eventType) {
+        return mapper.selectByDevice(androidid,imei,eventType);
     }
 }

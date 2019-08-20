@@ -2,8 +2,6 @@ package com.dragon.sdk.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.dragon.sdk.entity.TClickAndroidData;
-import com.dragon.sdk.entity.ThirdpartyGamePushAndroidData;
-import com.dragon.sdk.mapper.TClickAndroidDataMapper;
 
 import java.util.List;
 
@@ -20,5 +18,5 @@ public interface ITClickAndroidDataService extends IService<TClickAndroidData> {
     @Override
     boolean insert(TClickAndroidData entity);
 
-    List<TClickAndroidData> selectByDevice(String androidid, String imei);
+    List<TClickAndroidData> selectByDevice(String androidid, String imei, Integer eventType);
 }

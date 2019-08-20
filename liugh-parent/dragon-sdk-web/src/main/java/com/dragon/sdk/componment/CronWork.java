@@ -122,7 +122,7 @@ public class CronWork {
         if (StringUtils.isEmpty(gameCallData.getIdfa())) {
             return;
         }
-        List<TClickIosData> dataList = clickIosDataService.selectByDevice(gameCallData.getIdfa());
+        List<TClickIosData> dataList = clickIosDataService.selectByDevice(gameCallData.getIdfa(),gameCallData.getEventType()-1);
         if (!CollectionUtils.isEmpty(dataList)) {
             for (TClickIosData data : dataList) {
                 if (data != null) {
@@ -186,7 +186,7 @@ public class CronWork {
         }
 
         handlerAdSecurity(gameCallData);
-        List<TClickAndroidData> dataList = clickAndroidDataService.selectByDevice(gameCallData.getAndroidid(), gameCallData.getImei());
+        List<TClickAndroidData> dataList = clickAndroidDataService.selectByDevice(gameCallData.getAndroidid(), gameCallData.getImei(),gameCallData.getEventType()-1);
         if (!CollectionUtils.isEmpty(dataList)) {
             for (TClickAndroidData data : dataList) {
                 if (data != null) {

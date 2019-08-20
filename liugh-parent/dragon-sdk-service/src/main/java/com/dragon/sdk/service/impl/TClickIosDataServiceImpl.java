@@ -1,12 +1,8 @@
 package com.dragon.sdk.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.dragon.sdk.entity.TClickAndroidData;
 import com.dragon.sdk.entity.TClickIosData;
-import com.dragon.sdk.entity.TouTiaoAdData;
-import com.dragon.sdk.mapper.TClickAndroidDataMapper;
 import com.dragon.sdk.mapper.TClickIosDataMapper;
-import com.dragon.sdk.service.ITClickAndroidDataService;
 import com.dragon.sdk.service.ITClickIosDataService;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +28,7 @@ public class TClickIosDataServiceImpl extends ServiceImpl<TClickIosDataMapper, T
     }
 
     @Override
-    public List<TClickIosData> selectByDevice(String idfa) {
-        return mapper.selectByDevice(idfa);
+    public List<TClickIosData> selectByDevice(String idfa, Integer eventType) {
+        return mapper.selectByDevice(idfa,eventType);
     }
 }
