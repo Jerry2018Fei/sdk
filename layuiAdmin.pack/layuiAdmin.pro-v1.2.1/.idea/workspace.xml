@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9d6bddaf-ad18-40d7-923c-a5000668c9e2" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/qisha/1-14050F91U3106.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/1024x1024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/1024x1024白底.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/download.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qisha/u14_d.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clover-common-componment-parent/clover-common-persistence/src/main/java/com/clover/common/entity/OperationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../clover-common-componment-parent/clover-common-persistence/src/main/java/com/clover/common/entity/OperationLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/entity/GamePlayerMsg.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/GameCallDataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/GameCallDataMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/GamePlayerMsgMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/xml/GameCallDataMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/xml/GameCallDataMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-persistence/src/main/java/com/dragon/sdk/mapper/xml/GamePlayerMsgMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/IGameCallDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/IGameCallDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/IGamePlayerMsgService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/impl/GameCallDataServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/impl/GameCallDataServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-service/src/main/java/com/dragon/sdk/service/impl/GamePlayerMsgServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/componment/CronWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/componment/CronWork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/GameCallDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/GameCallDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/GamePlayerMsgController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/TouTiaoAdDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/TouTiaoAdDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/WechatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/WechatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/test/java/ToutiaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/test/java/ToutiaoTest.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="download.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/qisha/download.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="531">
+              <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>数据接口</find>
+      <find>del</find>
+      <find>redirect</find>
+      <find>{{#  if</find>
+      <find>验证码</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/start/layui/lay/modules/table.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/lib/view.js" />
+        <option value="$PROJECT_DIR$/src/views/ad/toutiao_data.html" />
+        <option value="$PROJECT_DIR$/src/views/ad/game_data.html" />
+        <option value="$PROJECT_DIR$/src/views/user/login.html" />
+        <option value="$PROJECT_DIR$/start/layui/css/layui.css" />
+        <option value="$PROJECT_DIR$/src/views/user/administrators/list.html" />
+        <option value="$PROJECT_DIR$/src/controller/useradmin.js" />
+        <option value="$PROJECT_DIR$/src/config.js" />
+        <option value="$PROJECT_DIR$/src/views/template/tips/downloads.html" />
+        <option value="$PROJECT_DIR$/downloads.html" />
+        <option value="$PROJECT_DIR$/qisha/downloads.html" />
+        <option value="$PROJECT_DIR$/qisha/download.html" />
+        <option value="$USER_HOME$/Desktop/nginx.conf" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+      </GulpfileState>
+    </gulpfiles>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="413" />
+    <option name="width" value="1680" />
+    <option name="height" value="951" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="layuiAdmin.pro-v1.2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="layuiAdmin.pro-v1.2.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="layuiAdmin.pro-v1.2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="layuiAdmin.pro-v1.2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="qisha" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/qisha" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/views/template/tips" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/qisha" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Unnamed">
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/layuiAdmin.pro-v1.2.1/start/index.html" />
+    <configuration name="Unnamed" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <list>
+      <item itemvalue="npm.Unnamed" />
+      <item itemvalue="JavaScript Debug.index.html" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9d6bddaf-ad18-40d7-923c-a5000668c9e2" name="Default" comment="" />
+      <created>1559220920555</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559220920555</updated>
+      <workItem from="1559220923097" duration="10501000" />
+      <workItem from="1559307524062" duration="4022000" />
+      <workItem from="1559716513269" duration="647000" />
+      <workItem from="1559723892258" duration="558000" />
+      <workItem from="1560088526735" duration="541000" />
+      <workItem from="1561187518559" duration="1151000" />
+      <workItem from="1563593749851" duration="1612000" />
+      <workItem from="1563605170285" duration="13236000" />
+      <workItem from="1563718087543" duration="2051000" />
+      <workItem from="1563776659901" duration="1160000" />
+      <workItem from="1563802138451" duration="1894000" />
+      <workItem from="1563811378617" duration="3794000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="41167000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="951" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="NativeScript" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.329602" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Gulp" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2996923" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.35945272" />
+      <window_info anchor="right" id="Nativescript Palette" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.30597016" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/views/user/user/list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/administrators/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/layui/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31433">
+          <caret line="1849" column="1" selection-start-line="1849" selection-start-column="1" selection-end-line="1849" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/useradmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="97" column="62" lean-forward="true" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/toutiao_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="24" selection-start-line="107" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/game_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="32" lean-forward="true" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="199" column="23" selection-start-line="199" selection-start-column="11" selection-end-line="199" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/user/list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/administrators/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/layui/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31433">
+          <caret line="1849" column="1" selection-start-line="1849" selection-start-column="1" selection-end-line="1849" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/useradmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="97" column="62" lean-forward="true" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ad_data.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/layui/lay/modules/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3400">
+          <caret line="200" column="158" lean-forward="true" selection-start-line="200" selection-start-column="158" selection-end-line="200" selection-end-column="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/toutiao_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="99" column="25" selection-start-line="99" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3468">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/api/reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/component/table/parseData.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/game_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3536">
+          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/component/table/parseData.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ad_data.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/layui/lay/modules/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3400">
+          <caret line="200" column="158" selection-start-line="200" selection-start-column="158" selection-end-line="200" selection-end-column="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/api/reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="199" column="23" selection-start-line="199" selection-start-column="11" selection-end-line="199" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/user/list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/toutiao_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="24" selection-start-line="107" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ad/game_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="32" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/layui/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31433">
+          <caret line="1849" column="1" selection-start-line="1849" selection-start-column="1" selection-end-line="1849" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/administrators/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/useradmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="97" column="62" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/temp.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6841">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/template/tips/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/template/user/forget.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/componment/CronWork.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../liugh-parent/dragon-sdk-web/src/main/java/com/dragon/sdk/controller/GameCallDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/template/tips/downloads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-836">
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="23" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/style/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="500" column="26" selection-start-line="500" selection-start-column="26" selection-end-line="500" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="61" column="51" lean-forward="true" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qisha/download.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
