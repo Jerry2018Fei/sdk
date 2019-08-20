@@ -12,4 +12,5 @@ import com.dragon.sdk.entity.GameCallData;
 public interface GameCallDataMapper extends BaseMapper<GameCallData> {
 
 
+    GameCallData queryByDevice(Integer type, String idfa, String imei, String androidid);
 }

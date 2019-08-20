@@ -1,22 +1,14 @@
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.clover.common.util.MD5Utils;
 import com.dragon.sdk.componment.CronWork;
 import com.dragon.sdk.entity.GameCallData;
-import com.dragon.sdk.entity.TouTiaoAdData;
+import com.dragon.sdk.mapper.BaseTest;
 import com.dragon.sdk.mapper.GameCallDataMapper;
 import com.dragon.sdk.service.ITouTiaoAdDataService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author dingpengfei
@@ -30,10 +22,10 @@ public class ToutiaoTest extends BaseTest {
 
 //    @Test
   public void hello() throws NoSuchAlgorithmException {
-    List<GameCallData> datas = gameCallDataMapper.selectList(new EntityWrapper<>());
-    for(GameCallData d:datas){
-      cronWork.checkGameCallData(d);
-    }
+//    List<GameCallData> datas = gameCallDataMapper.selectList(new EntityWrapper<>());
+//    for(GameCallData d:datas){
+//      cronWork.patchAdData(d);
+//    }
 //    List<TouTiaoAdData> list = touTiaoAdDataService.selectList(
 //            new EntityWrapper<TouTiaoAdData>()
 //

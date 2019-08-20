@@ -1,3 +1,5 @@
+package com.dragon.sdk.mapper;
+
 import com.dragon.sdk.SDKSpringbootApplication;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

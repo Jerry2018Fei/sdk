@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.sdk.mapper.ThirdpartyGamePushAndroidDataMapper">
+
+    <resultMap id="BaseResultMap" type="com.dragon.sdk.entity.ThirdpartyGamePushAndroidData" >
+        <result column="id" property="id" />
+        <result column="imei" property="imei" />
+        <result column="mac" property="mac" />
+        <result column="androidid" property="androidid" />
+        <result column="event_type" property="eventType" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `id`,
+                `imei`,
+                `mac`,
+                `androidid`,
+                `event_type`,
+                `update_time`,
+                `create_time`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.dragon.sdk.entity.ThirdpartyGamePushAndroidData">
+        INSERT INTO thirdparty_game_push_android_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( imei )'>
+                `imei`,
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( mac )'>
+                `mac`,
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( androidid )'>
+                `androidid`,
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( eventType )'>
+                `event_type`,
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( updateTime )'>
+                `update_time`,
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( createTime )'>
+                `create_time`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( imei )'>
+                #{imei},
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( mac )'>
+                #{mac},
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( androidid )'>
+                #{androidid},
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( eventType )'>
+                #{eventType},
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( updateTime )'>
+                #{updateTime},
+            </if>
+            <if test ='@com.dragon.sdk.Ognl@isNotEmpty( createTime )'>
+                #{createTime}
+            </if>
+        </trim>
+        on duplicate key update
+        update_time=now(),
+        event_type=if(event_type>#{eventType},event_type,#{eventType})
+
+
+    </insert>
+
+
+
+</mapper>

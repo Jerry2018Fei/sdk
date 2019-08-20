@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.sdk.mapper.GameCallDataMapper">
-
-
-
+    <resultMap id="BaseResultMap" type="com.dragon.sdk.entity.GameCallData">
+        <result column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="imei" property="imei"/>
+        <result column="idfa" property="idfa"/>
+        <result column="mac" property="mac"/>
+        <result column="androidid" property="androidid"/>
+        <result column="event_type" property="eventType"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        `id`,
+                `type`,
+                `imei`,
+                `idfa`,
+                `mac`,
+                `androidid`,
+                `event_type`,
+                `update_time`
+    </sql>
+    <select id="queryByDevice" resultType="com.dragon.sdk.entity.GameCallData">
+        select
+        <include refid="Base_Column_List"/>
+        from game_call_data
+        <where>
+            <choose>
+                <when test="type==1">
+                    <choose>
+                        <when test="@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isNotEmpty( imei )">
+                            and ( androidid=#{androidid} or imei =#{imei})
+                        </when>
+                        <when test="@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isEmpty( imei )">
+                            and androidid=#{androidid}
+                        </when>
+                        <otherwise>
+                            and imei =#{imei}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    and idfa=#{idfa}
+                </otherwise>
+            </choose>
+            limit 1
+        </where>
+    </select>
 </mapper>

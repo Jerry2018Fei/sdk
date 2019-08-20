@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>七杀传奇_游意思</title>
+    <link rel="icon" href="u14_d.jpg"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../start/layui/css/layui.css" media="all">
+
+    <style>
+        @media screen and (max-width: 1024px) {
+            body {
+                background-color: #ededed;
+                height: 800px;
+
+            }
+            .top span {
+                float: right;
+                color: red;
+                font-size: 12px;
+            }
+
+            .content {
+                margin-top: 20%;
+            }
+
+            .content_b img {
+                max-width: 400px;
+                max-height: 400px;
+                width: 50%;
+            }
+
+            #btn {
+                margin-top: 5%;
+            }
+
+            .foot {
+                margin-top: 20%;
+            }
+
+            .foot span {
+                font-size: 6px;
+            }
+        }
+        @media screen and (min-width: 1025px) {
+            body {
+                background-color: #ededed;
+                height: 800px;
+
+            }
+            .top span {
+                float: right;
+                color: red;
+                font-size: 12px;
+            }
+
+            .content {
+                margin-top: 20%;
+            }
+
+            .content_b img {
+                max-width: 600px;
+                max-height: 600px;
+                /*width: 50%;*/
+            }
+
+            #btn {
+                margin-top: 5%;
+            }
+
+            .foot {
+                margin-top: 20%;
+            }
+
+            .foot span {
+                font-size: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="top"><span>↗如果在微信中下载不了↗请点击浏览器打开↗</span></div>
+<div class="layui-fluid">
+    <div class="layadmin-tips content" style="">
+        <div class="content_b"><img src="1024x1024.png"/></div>
+
+        <div id="btn">
+            <a onclick="submitFn()">
+                <button class="layui-btn layui-btn-lg">Download</button>
+            </a>
+        </div>
+
+    </div>
+    <div class="layadmin-tips foot">
+        <span>下载提示：华为用户请不要选择默认浏览器，可以选择qq浏览器、uc、谷歌等常用手机浏览器</span>
+    </div>
+</div>
+<script src="../start/layui/layui.js"></script>
+
+<script>
+    var u = navigator.userAgent;
+    // if (u.indexOf('iPhone') > -1) {
+    //     document.getElementsByClassName("_a").style.display = "none";
+    // }
+
+    function submitFn() {
+        //判断浏览器
+
+
+        var d = new Date();
+        var t0 = d.getTime();
+        console.log(u);
+        // alert(u);
+        if (u.indexOf('iPhone') > -1||u.indexOf('iPad') > -1) {
+            //IOS
+            var delay = setInterval(function () {
+                var d = new Date();
+                var t1 = d.getTime();
+                // if (t1 - t0 < 3000 && t1 - t0 > 2000) {
+                // alert('请下载APP');
+                window.location.href = "itms-services://?action=download-manifest&url=https://qishawar.u14.fun/manifest.plist";
+                // window.location.href = "https://u14.wubo.info/qishawar.ipa";
+
+
+                // }
+                // if (t1 - t0 >= 3000) {
+                clearInterval(delay);
+                // }
+            }, 1000);
+        } else {
+            //Android
+            var delay = setInterval(function () {
+                var d = new Date();
+                var t1 = d.getTime();
+                // if (t1 - t0 < 3000 && t1 - t0 > 2000) {
+                //     alert('请下载APP');
+                window.location.href = "https://qishawar.u14.fun/qishawar.apk";
+                // window.location.href = "https://qishawar.u14.fun/qishawar.apk";
+                // <a href="http://mcgi.v.qq.com/commdatav2?cmd=4&amp;confid=848&amp;platform=aphone" class="btn_normal " _stat="floatDownload:phone_Android"><i class="icon icon_android"></i>Android</a>
+                // <a href="http://itunes.apple.com/cn/app/id458318329?mt=8" class="btn_normal btn_first" _stat="floatDownload:phone_iphone" target="_blank"><i class="icon icon_iphone"></i>iPhone</a>
+                // }
+                // if (t1 - t0 >= 3000) {
+                clearInterval(delay);
+                // }
+            }, 1000);
+        }
+    }
+
+    function openApp(src) {
+// 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为
+// 否则打开a标签的href链接
+        var ifr = document.createElement('iframe');
+        ifr.src = src;
+        ifr.style.display = 'none';
+        document.body.appendChild(ifr);
+        window.setTimeout(function () {
+            document.body.removeChild(ifr);
+        }, 2000);
+    }
+
+
+</script>
+
+<script>
+    layui.config({
+        base: '../src/' //指定 layuiAdmin 项目路径，本地开发用 src，线上用 dist
+        , version: '1.2.1'
+    }).use('index');
+</script>
+</body>
+</html>
+

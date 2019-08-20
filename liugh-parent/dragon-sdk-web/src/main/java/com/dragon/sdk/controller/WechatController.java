@@ -30,8 +30,6 @@ public class WechatController extends BaseController {
   public String accept(String signature, String timestamp, String nonce, String echostr) {
     try {
       wxcpt = new WXBizMsgCrypt(token, aesKey, appId);
-//     String result= wxcpt.decryptMsg(signature, timestamp, nonce, echostr);
-//      logger.info(result);
     } catch (AesException e) {
       e.printStackTrace();
       logger.error(e.getMessage());

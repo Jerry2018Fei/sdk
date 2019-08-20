@@ -6,6 +6,8 @@ import com.dragon.sdk.mapper.GameCallDataMapper;
 import com.dragon.sdk.service.IGameCallDataService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * 服务实现类
  *
@@ -14,4 +16,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GameCallDataServiceImpl extends ServiceImpl<GameCallDataMapper, GameCallData>
-    implements IGameCallDataService {}
+    implements IGameCallDataService {
+
+    @Resource private GameCallDataMapper gameCallDataMapper;
+    @Override
+    public GameCallData queryByDevice(Integer type, String idfa, String imei, String androidid) {
+        return gameCallDataMapper.queryByDevice(type,idfa,imei,androidid);
+    }
+}

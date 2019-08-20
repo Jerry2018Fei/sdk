@@ -15,4 +15,6 @@ import com.dragon.sdk.entity.TouTiaoAdData;
 public interface IGameCallDataService extends IService<GameCallData> {
 
 
+
+    GameCallData queryByDevice(Integer type, String idfa, String imei, String androidid);
 }

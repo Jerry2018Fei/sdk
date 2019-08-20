@@ -17,6 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -51,8 +52,10 @@ public class RecordLogAspect extends AbstractAspectManager {
         long endTime;
         // 开始时间戳
         long operationTime = System.currentTimeMillis();
+        Object result=null;
         try {
-            return pjp.proceed(pjp.getArgs());
+            result=pjp.proceed(pjp.getArgs());
+            return result;
         } catch ( Throwable throwable ) {
             isException = true;
             actionLog = throwable.getMessage();
@@ -60,17 +63,17 @@ public class RecordLogAspect extends AbstractAspectManager {
             throw throwable;
         } finally {
             // 日志处理
-            logHandle( pjp , method , log , actionLog , operationTime , isException,stackTrace );
+            logHandle(result, pjp , method , log , actionLog , operationTime , isException,stackTrace );
         }
     }
 
-    private void logHandle (ProceedingJoinPoint joinPoint ,
-                            Method method ,
-                            Log log ,
-                            String actionLog ,
-                            long startTime  ,
-                            boolean isException,
-                            StackTraceElement[] stackTrace) {
+    private void logHandle(Object result, ProceedingJoinPoint joinPoint,
+                           Method method,
+                           Log log,
+                           String actionLog,
+                           long startTime,
+                           boolean isException,
+                           StackTraceElement[] stackTrace) {
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         IOperationLogService operationLogService = SpringContextBeanService.getBean(IOperationLogService.class);
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
@@ -81,22 +84,31 @@ public class RecordLogAspect extends AbstractAspectManager {
             String userNo = JWTUtil.getUserNo(authorization);
             operationLog.setUserNo(userNo);
         }
+
         operationLog.setIp(getIpAddress(request));
         operationLog.setClassName(joinPoint.getTarget().getClass().getName() );
-        operationLog.setCreateTime(startTime);
+        operationLog.setCreateTime(new Date());
         operationLog.setLogDescription(log.description());
         operationLog.setModelName(log.modelName());
         operationLog.setAction(log.action());
+        if(result!=null){
+            String m=JSONObject.toJSONString(result);
+            if(m.length()>500){
+                m=m.substring(0,500)+"...";
+            }
+            operationLog.setResult(m);
+        }
         if(isException){
             StringBuilder sb = new StringBuilder();
             sb.append(actionLog+" &#10; ");
             for (int i = 0; i < stackTrace.length; i++) {
                 sb.append(stackTrace[i]+" &#10; ");
             }
-            operationLog.setMessage(sb.toString());
+            String m=sb.toString().length()>500?sb.toString().substring(0,500)+"...":sb.toString();
+            operationLog.setMessage(m);
         }
         operationLog.setMethodName(method.getName());
-        operationLog.setSucceed(isException == true ? 2:1);
+        operationLog.setSucceed(isException ? 2:1);
         Object[] args = joinPoint.getArgs();
         StringBuilder sb = new StringBuilder();
         boolean isJoint = false;

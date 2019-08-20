@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.sdk.mapper.TClickIosDataMapper">
+
+    <resultMap id="BaseResultMap" type="com.dragon.sdk.entity.TClickIosData" >
+        <result column="id" property="id" />
+        <result column="idfa" property="idfa" />
+        <result column="mac" property="mac" />
+        <result column="ua" property="ua" />
+        <result column="androidid" property="androidid" />
+        <result column="openudid" property="openudid" />
+        <result column="ip" property="ip" />
+        <result column="callback_url" property="callbackUrl" />
+        <result column="is_send" property="isSend" />
+        <result column="adid" property="adid" />
+        <result column="cid" property="cid" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" parameterType="com.dragon.sdk.entity.TClickIosData">
+        INSERT INTO t_click_ios_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                `id`,
+            </if>
+            <if test ='null != idfa'>
+                `idfa`,
+            </if>
+            <if test ='null != mac'>
+                `mac`,
+            </if>
+            <if test ='null != ua'>
+                `ua`,
+            </if>
+            <if test ='null != androidid'>
+                `androidid`,
+            </if>
+            <if test ='null != openudid'>
+                `openudid`,
+            </if>
+            <if test ='null != ip'>
+                `ip`,
+            </if>
+            <if test ='null != callbackUrl'>
+                `callback_url`,
+            </if>
+            <if test ='null != isSend'>
+                `is_send`,
+            </if>
+            <if test ='null != adid'>
+                `adid`,
+            </if>
+            <if test ='null != cid'>
+                `cid`,
+            </if>
+            <if test ='null != createTime'>
+                `create_time`,
+            </if>
+            <if test ='null != updateTime'>
+                `update_time`,
+            </if>
+            <if test ='null != deleteFlag'>
+                `delete_flag`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                #{id},
+            </if>
+            <if test ='null != idfa'>
+                #{idfa},
+            </if>
+            <if test ='null != mac'>
+                #{mac},
+            </if>
+            <if test ='null != ua'>
+                #{ua},
+            </if>
+            <if test ='null != androidid'>
+                #{androidid},
+            </if>
+            <if test ='null != openudid'>
+                #{openudid},
+            </if>
+            <if test ='null != ip'>
+                #{ip},
+            </if>
+            <if test ='null != callbackUrl'>
+                #{callbackUrl},
+            </if>
+            <if test ='null != isSend'>
+                #{isSend},
+            </if>
+            <if test ='null != adid'>
+                #{adid},
+            </if>
+            <if test ='null != cid'>
+                #{cid},
+            </if>
+            <if test ='null != createTime'>
+                #{createTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != deleteFlag'>
+                #{deleteFlag}
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByDevice" resultMap="BaseResultMap">
+        select * from t_click_ios_data where idfa=#{idfa} and delete_flag=0
+    </select>
+</mapper>
