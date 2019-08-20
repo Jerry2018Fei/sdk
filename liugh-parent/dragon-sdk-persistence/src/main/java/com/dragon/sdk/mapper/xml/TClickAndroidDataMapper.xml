@@ -121,13 +121,18 @@
     <select id="selectByDevice" resultType="com.dragon.sdk.entity.TClickAndroidData">
 
         select * from t_click_android_data
-        where delete_flag=0
-        <if test ='@com.dragon.sdk.Ognl@isNotEmpty( imei )'>
-          and imei=  #{imei}
+        where delete_flag=0 and is_send <![CDATA[ < ]]> 2
+        <if test ='@com.dragon.sdk.Ognl@isNotEmpty( imei ) and @com.dragon.sdk.Ognl@isNotEmpty( androidid )'>
+          and (imei=  #{imei} or androidid=  #{androidid})
         </if>
-        <if test ='@com.dragon.sdk.Ognl@isNotEmpty( androidid )'>
+        <if test ='@com.dragon.sdk.Ognl@isNotEmpty( imei ) and @com.dragon.sdk.Ognl@isEmpty( androidid )'>
+            and imei=  #{imei}
+        </if>
+        <if test ='@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isEmpty( imei )'>
             and androidid=  #{androidid}
         </if>
+
+        limit 1
     </select>
 
 
