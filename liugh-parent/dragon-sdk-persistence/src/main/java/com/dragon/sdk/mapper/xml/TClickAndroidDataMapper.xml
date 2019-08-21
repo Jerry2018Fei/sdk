@@ -118,7 +118,7 @@
             </if>
         </trim>
     </insert>
-    <select id="selectByDevice" resultType="com.dragon.sdk.entity.TClickAndroidData">
+    <select id="selectByDevice" resultMap="BaseResultMap">
 
         select * from t_click_android_data
         where delete_flag=0 and is_send <![CDATA[ < ]]> #{eventType}

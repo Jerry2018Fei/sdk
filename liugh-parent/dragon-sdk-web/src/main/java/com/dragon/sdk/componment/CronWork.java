@@ -299,7 +299,9 @@ public class CronWork {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(getmd5Sum(imei("868953042454828")));
+        System.out.println(getmd5Sum(imei("86634103984145")));
+        System.out.println(getmd5Sum(imei("866341039841458")));
+//        86634103984145
         System.out.println(MD5Utils.string2MD5("7763c6a6486d5ce8"));
     }
 

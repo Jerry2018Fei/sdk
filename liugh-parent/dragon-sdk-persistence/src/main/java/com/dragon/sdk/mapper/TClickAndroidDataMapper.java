@@ -30,5 +30,5 @@ public interface TClickAndroidDataMapper extends BaseMapper<TClickAndroidData> {
      * @param eventType
      * @return list
      */
-    List<TClickAndroidData> selectByDevice(@Param("androidid") String androidid, @Param("imei") String imei, Integer eventType);
+    List<TClickAndroidData> selectByDevice(@Param("androidid") String androidid, @Param("imei") String imei, @Param("eventType") Integer eventType);
 }

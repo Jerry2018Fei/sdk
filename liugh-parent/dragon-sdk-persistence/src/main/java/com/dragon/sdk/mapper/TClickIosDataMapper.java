@@ -21,5 +21,5 @@ public interface TClickIosDataMapper extends BaseMapper<TClickIosData> {
     @Override
     Integer insert(TClickIosData entity);
 
-    List<TClickIosData> selectByDevice(@Param("idfa") String idfa, Integer eventType);
+    List<TClickIosData> selectByDevice(@Param("idfa") String idfa, @Param("eventType")  Integer eventType);
 }

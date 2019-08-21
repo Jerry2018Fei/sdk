@@ -111,6 +111,6 @@
         </trim>
     </insert>
     <select id="selectByDevice" resultMap="BaseResultMap">
-        select * from t_click_ios_data where idfa=#{idfa} and delete_flag=0 and is_send <![CDATA[ < ]]> #{eventType}  limit 1
+        select * from t_click_ios_data where idfa=#{idfa} and delete_flag=0 and is_send <![CDATA[ < ]]> #{eventType}
     </select>
 </mapper>
