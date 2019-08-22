@@ -131,8 +131,11 @@
         <if test ='@com.dragon.sdk.Ognl@isNotEmpty( androidid ) and @com.dragon.sdk.Ognl@isEmpty( imei )'>
             and androidid=  #{androidid}
         </if>
+        order by create_time
+        <if test="eventType !=2">
+            limit 3
+        </if>
 
-        limit 1
     </select>
 
 

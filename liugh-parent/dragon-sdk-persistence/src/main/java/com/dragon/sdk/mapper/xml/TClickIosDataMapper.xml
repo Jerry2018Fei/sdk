@@ -112,5 +112,9 @@
     </insert>
     <select id="selectByDevice" resultMap="BaseResultMap">
         select * from t_click_ios_data where idfa=#{idfa} and delete_flag=0 and is_send <![CDATA[ < ]]> #{eventType}
+        order by create_time
+        <if test="eventType !=2">
+            limit 3
+        </if>
     </select>
 </mapper>
